@@ -20,8 +20,51 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.btn {
+  @apply bg-green-400 border border-white text-white px-2 py-2 mt-3 rounded-md font-semibold hover:scale-105 transition shadow shadow-green-600;
+  white-space: nowrap;
+}
+
+h1{
+  @apply text-2xl font-bold
+}
+
+h2{
+  @apply text-2xl font-bold my-4
+}
+
+p.content{
+  @apply leading-loose
+}
+
+.link{
+  @apply text-green-400 font-bold max-w-full overflow-hidden text-ellipsis
+}
+
+.bottombar {
+  @apply fixed bottom-0 z-10 w-full p-4 rounded-t-3xl bg-glassmorphism backdrop-blur-lg xs:px-7 md:hidden;
+  /* Add this line: */
+  left: 0;
+  right: 0;
+}
+
+.bottombar_container {
+  @apply flex items-center justify-between gap-3 xs:gap-5
+}
+
+.bottombar_link {
+  @apply relative flex flex-col items-center gap-5 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5
+}
+
+.primary-btn{
+  @apply px-4 py-2 bg-green-400 text-white rounded-md;
+}
+
+input,
+textarea {
+  @apply px-4 py-2 border-green-400 rounded-md bg-transparent border;
+}
+
+textarea{
+  @apply h-36
 }

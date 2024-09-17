@@ -1,13 +1,11 @@
-import Bottombar from "@/components/Bottombar";
-import CategoriesList from "@/components/CategoriesList";
-import Post from "@/components/Post";
 import { postsData } from "@/data";
-import Image from "next/image";
+import Post from "@/components/Post";
+import Link from "next/link";
 
-export default function Home() {
-  return (
-    <>
-    <CategoriesList />
+const page = () => {
+    return (
+        <div>
+        <h1>Welcome Back</h1> 
     {postsData && postsData.length > 0 ? (
       postsData.map((post) => <Post 
       key={post.id}
@@ -22,9 +20,13 @@ export default function Home() {
       links={post.links || []}
       />)
         ) : (
-      <div className="py-6">No Posts</div>
+      <>
+      <div className="py-6">No posts created yet.{''}</div>
+      <Link className="underline" href={'/create-post'}>Create New</Link>
+      </>
     )}
-    <Bottombar/>
-    </>
+    </div>
   );
 }
+
+export default page
