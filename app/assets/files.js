@@ -6,6 +6,9 @@ import heart from './heart.svg';
 import user from './user.svg';
 import group from './community.svg';
 import close from './close.svg';
+import logout from './logout.svg';
+import del from './delete.svg';
+import edit from './edit.svg'
 
 export const files = {
     search,
@@ -16,4 +19,7 @@ export const files = {
     user,
     group,
     close,
+    logout,
+    del,
+    edit,
 }

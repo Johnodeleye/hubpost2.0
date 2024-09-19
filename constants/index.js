@@ -28,7 +28,7 @@ export const sidebarLinks = [
     },
     {
       imgURL: files.user,
-      route: "/profile",
+      route: "/dashboard",
       label: "Profile",
     },
   ];

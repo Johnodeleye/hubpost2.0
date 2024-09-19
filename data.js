@@ -1,9 +1,12 @@
+import { files } from "./app/assets/files";
+
 export const postsData = [
   {
     id: "1",
     title: "New Smartphone Model Released",
     content: "A new smartphone model with advanced features has been released.",
     author: "John Doe",
+    authorimg: files.user,
     datepublished: "2023-09-20",
     category: "Mobile",
     links: ["https://example.com/news1"],
@@ -26,6 +29,7 @@ export const postsData = [
     content:
       "SpaceX successfully launches a new communication satellite into orbit.",
     author: "Elon Musk",
+    authorimg:'',
     datepublished: "2023-09-18",
     category: "Space",
     links: [],

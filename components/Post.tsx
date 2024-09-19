@@ -1,11 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import offimage from '@/app/assets/thumbnail-placeholder.png'
+import userimage from '@/app/assets/user.svg'
 import DeleteButton from "./DeleteButton"
+import { files } from "@/app/assets/files"
 
 interface PostProps {
     id: string,
     author: string,
+    authorimg?: string,
     date: string,
     image?: string,
     authorEmail?: string,
@@ -17,6 +20,7 @@ interface PostProps {
 const Post = ({
     id,
     author,
+    authorimg,
     date,
     image,
     authorEmail,
@@ -32,17 +36,26 @@ const Post = ({
         <div className="my-4 border-b border-b-300 py-8">
             <div className="mb-4">
                 Posted by: {''}
-                <span className="font-bold text-green-400">{author}</span> on {date}
-            </div>
-            <div className="w-full h-72 relative">
-                {image ? (<Image src={image} alt={title} fill className="object-cover rounded-md object-center"/> 
-            ): 
+                <div className="flex items-center">
             <Image
-            src={offimage}
-            alt={title}
-            fill
-            className="object-cover rounded-md object-center" />
-             }
+                src={authorimg || userimage}
+                alt={title}
+                className="rounded-full object-cover w-8 h-8 mr-2" // Adjust size as needed
+            />
+            <div>
+                <span className="font-bold text-green-400">{author}</span>
+                <span className="text-white"> {''}on {date}</span>
+            </div>
+            </div>
+            </div>
+            
+            <div className="w-full h-72 relative">
+                <Image
+                src={image || offimage}
+                alt={title}
+                className="object-cover rounded-md object-center"
+                fill
+                />
             </div>
 
             {category && (<Link className="bg-green-500 w-fit text-white px-4 py-0.5 text-sm font-bold rounded-md mt-4 block" href={`categories/${category}`}>{category}</Link>)}
@@ -76,8 +89,10 @@ const Post = ({
 
             {
                 isEditable && (
-                    <div className="flex gap-3 font-bold py-2 px-4 rounded-md bg-green-400 w-fit">
-                        <Link href={`/edit-post/${id}`}>Edit</Link>
+                    <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit">
+                        <Link href={`/edit-post/${id}`}>
+                        <Image src={files.edit} alt="edit"/>
+                        </Link>
                         <DeleteButton/>
                     </div>
                 )

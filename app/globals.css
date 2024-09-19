@@ -21,7 +21,7 @@ body {
 }
 
 .btn {
-  @apply bg-green-400 border border-white text-white px-2 py-2 mt-3 rounded-md font-semibold hover:scale-105 transition shadow shadow-green-600;
+  @apply bg-green-400 border border-white text-white px-2 py-2 mt-3 rounded-md font-semibold hover:scale-105 transition shadow shadow-green-600 lg:mr-7 mr-0;
   white-space: nowrap;
 }
 
@@ -57,7 +57,7 @@ p.content{
 }
 
 .primary-btn{
-  @apply px-4 py-2 bg-green-400 text-white rounded-md;
+  @apply px-4 py-2 bg-green-400 text-white rounded-md mt-1;
 }
 
 input,
@@ -66,5 +66,127 @@ textarea {
 }
 
 textarea{
-  @apply h-36
+  @apply h-36 max-w-full
 }
+
+
+@layer utilities {
+  .css-invert {
+    @apply invert-[50%] brightness-200;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #09090a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+}
+
+@layer components {
+  /* main */
+  .main-container {
+    @apply flex flex-col items-center flex-1 min-h-screen px-6 pb-10 bg-dark-1 pt-28 max-md:pb-32 sm:px-10;
+  }
+
+  /* Head Text */
+  .head-text {
+    @apply text-heading2-bold text-light-1;
+  }
+
+  /* Activity */
+  .activity-card {
+    @apply flex items-center gap-2 py-4 rounded-md bg-dark-2 px-7;
+  }
+
+  /* No Result */
+  .no-result {
+    @apply text-center !text-base-regular text-light-3;
+  }
+
+  /* Community Card */
+  .community-card {
+    @apply w-full px-4 py-5 rounded-lg bg-dark-3 sm:w-96;
+  }
+
+  .community-card_btn {
+    @apply rounded-lg bg-green-600 px-5 py-1.5 text-small-regular !text-light-1 !important;
+  }
+
+  /* thread card  */
+  .thread-card_bar {
+    @apply relative mt-2 w-0.5 grow rounded-full bg-neutral-800;
+  }
+
+  /* User card */
+  .user-card {
+    @apply flex flex-col justify-between gap-4 max-xs:rounded-xl max-xs:bg-dark-3 max-xs:p-4 xs:flex-row xs:items-center;
+  }
+
+  .user-card_avatar {
+    @apply flex items-start justify-start flex-1 gap-3 xs:items-center;
+  }
+
+  .user-card_btn {
+    @apply h-auto min-w-[74px] rounded-lg bg-green-600 text-[12px] text-light-1 !important;
+  }
+
+  .searchbar {
+    @apply flex gap-1 px-4 py-2 rounded-lg bg-dark-3;
+  }
+
+  .searchbar_input {
+    @apply border-none bg-dark-3 text-base-regular text-light-4 outline-none !important;
+  }
+
+  .topbar {
+    @apply fixed top-0 z-30 flex items-center justify-between w-full px-6 py-3 bg-dark-2;
+  }
+
+  .bottombar {
+    @apply fixed bottom-0 z-10 w-full p-4 rounded-t-3xl bg-glassmorphism backdrop-blur-lg xs:px-7 md:hidden;
+  }
+
+  .bottombar_container {
+    @apply flex items-center justify-between gap-3 xs:gap-5;
+  }
+
+  .bottombar_link {
+    @apply relative flex flex-col items-center gap-5 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
+  }
+
+  .leftsidebar {
+    @apply sticky top-0 left-0 z-20 flex flex-col justify-between h-screen pb-5 overflow-auto text-green-500 border-r w-fit border-r-dark-4 bg-dark-2 pt-28 max-md:hidden;
+  }
+
+  .leftsidebar_link {
+    @apply relative flex justify-start gap-4 p-4 rounded-lg;
+  }
+
+  .pagination {
+    @apply flex items-center justify-center w-full gap-5 mt-10;
+  }
+
+  .rightsidebar {
+    @apply sticky top-0 right-0 z-20 flex flex-col justify-between h-screen gap-12 px-10 pb-6 overflow-auto border-l w-fit border-l-dark-4 bg-dark-2 pt-28 max-xl:hidden;
+  }
+}
+
+  /* Hide the text on mobile screens */
+  @media (max-width: 768px) {
+    .text-on-desktop {
+      display: none;
+    }
+  }

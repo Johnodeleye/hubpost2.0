@@ -18,8 +18,8 @@ const CreatePostForm = () => {
         setLinks((prev) => prev.filter((_, i) => i !== index))
     }
     return (
-        <div>
-           <h2 className="text-green-400">Share Your Voice🔥</h2>
+        <div className="overflow-hidden">
+           <h2 className="text-green-400">Share Your Voice🔥📢</h2>
            <form action="" className="flex flex-col gap-2">
             <input type="text" placeholder="Title"/>
             <code><textarea placeholder="Content" cols={27}></textarea></code>
@@ -63,32 +63,32 @@ const CreatePostForm = () => {
             ))}
 
             <div className="flex gap-2">
-                <input className="flex-1" 
+                <input className="flex-1 lg:pt-2" 
                 type="text" 
                 placeholder="Input the link and click on Add"
                 onChange={e => setLinkInput(e.target.value)}
                 value={linkInput}
                 />
-                <button onClick={addLink} className="btn flex gap-2 items-center overflow-x-hidden mb-4">
-                    <span>
-                    <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-              </svg>
-                    </span>
-                    Add
-                    </button>
+<button onClick={addLink} className="btn flex gap-2 items-center overflow-x-hidden overflow-hidden mb-4">
+  <span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className="w-5 h-5 lg:w-10"
+    >
+      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+    </svg>
+    <span className="text-on-desktop">Add</span> </span>
+</button>
+
             </div>
             
-            <select name="" id="" className="p-3 rounded-md border border-green-400 appearance-none bg-transparent text-gray-400">
+            <select name="" id="" className="p-3 rounded-md border border-green-400 appearance-none bg-transparent text-gray-400 mt-3">
                 <option value="">Select A Category</option>
                 {
                     categoriesData && categoriesData.map(category => (
-                        <option key={category.id} value={category.name}>{category.name}</option>
+                        <option className="bg-dark-1" key={category.id} value={category.name}>{category.name}</option>
                     ))
                 }
             </select>

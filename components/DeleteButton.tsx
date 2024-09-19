@@ -1,9 +1,13 @@
+import Image from "next/image"
+import { files } from "@/app/assets/files"
 const DeleteButton = () => {
     return (
         <div>
-            <button className="text-red-600">
-                Delete
-            </button>
+            <Image 
+            src={files.del}
+            alt="delete button"
+            className=""
+            />
         </div>
     )
 }
