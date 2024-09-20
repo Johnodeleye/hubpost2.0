@@ -15,9 +15,9 @@ const page = async () => {
     redirect('/sign-in');
   }
   return (
-    <div>
+    <div className="">
     {session && (
-      <h1>Welcome Back, {session?.user?.name}!</h1>
+      <h1 className="font-bold"><span className="text-green-500 whitespace-nowrap">Welcome Back, </span>{session?.user?.name}!</h1>
     )}
       {postsData && postsData.length > 0 ? (
               postsData.map((post) => <Post 
