@@ -34,20 +34,25 @@ const Post = ({
 
     return (
         <div className="my-4 border-b border-b-300 py-8">
-            <div className="mb-4">
-                Posted by: {''}
-                <div className="flex items-center">
-            <Image
-                src={authorimg || userimage}
-                alt={title}
-                className="rounded-full object-cover w-8 h-8 mr-2" // Adjust size as needed
-            />
-            <div>
-                <span className="font-bold text-green-400">{author}</span>
-                <span className="text-white"> {''}on {date}</span>
-            </div>
-            </div>
-            </div>
+
+<div className="flex items-center mb-4">
+  <Image
+    src={authorimg || userimage}
+    alt={title}
+    className="rounded-full object-cover w-8 h-8 mr-2" // Adjust size as needed
+  />
+  <div className="flex items-center flex-grow">
+    <span className="font-bold text-green-400">{author}</span>
+    {isEditable && (
+      <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
+        <Link href={`/edit-post/${id}`}>
+          <Image src={files.edit} alt="edit" />
+        </Link>
+        <DeleteButton />
+      </div>
+    )}
+  </div>
+</div>
             
             <div className="w-full h-72 relative">
                 <Image
@@ -86,17 +91,19 @@ const Post = ({
                     ))}
                 </div>
             )}
+         <span className="text-gray-600 m-1 text-sm">Posted {''}on {date}</span>
 
-            {
-                isEditable && (
-                    <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit">
-                        <Link href={`/edit-post/${id}`}>
-                        <Image src={files.edit} alt="edit"/>
-                        </Link>
-                        <DeleteButton/>
-                    </div>
-                )
-            }
+         <div className="flex gap-4 mt-4">
+         <button>
+            <Image src={files.comment} alt={'reply'}/>
+         </button>
+         <button>
+            <Image src={files.comment} alt={'reply'}/>
+         </button>
+         <button>
+            <Image src={files.comment} alt={'reply'}/>
+         </button>
+         </div>
         </div>
     )
 }

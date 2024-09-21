@@ -19,10 +19,10 @@ const CreatePostForm = () => {
     }
     return (
         <div className="overflow-hidden">
-           <h2 className="text-green-400">Share Your Voice🔥📢</h2>
+           <h2 className="text-green-400 text-center">Share Your Voice🔥📢</h2>
            <form action="" className="flex flex-col gap-2">
             <input type="text" placeholder="Title"/>
-            <code><textarea placeholder="Content" cols={27}></textarea></code>
+            <code><textarea placeholder="Content" cols={27} className="  w-full"></textarea></code>
 
             {links && links.map((link, i) => (
                 <div key={i} className="flex items-center gap-4">
@@ -63,13 +63,14 @@ const CreatePostForm = () => {
             ))}
 
             <div className="flex gap-2">
-                <input className="flex-1 lg:pt-2" 
+                <input className="flex-1 w-full" 
                 type="text" 
                 placeholder="Input the link and click on Add"
                 onChange={e => setLinkInput(e.target.value)}
                 value={linkInput}
+              
                 />
-<button onClick={addLink} className="btn flex gap-2 items-center overflow-x-hidden overflow-hidden mb-4">
+<button onClick={addLink} className="btn w-fit flex gap-2 items-center overflow-x-hidden overflow-hidden mb-4 lg:ml-3">
   <span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +94,7 @@ const CreatePostForm = () => {
                 }
             </select>
 
-            <button className="primary-btn" type="submit">Post</button>
+            <button className="primary-btn font-bold" type="submit">Post</button>
 
             <div className="p-2 text-red-500 font-bold">Error Message</div>
            </form>

@@ -8,7 +8,10 @@ import group from './community.svg';
 import close from './close.svg';
 import logout from './logout.svg';
 import del from './delete.svg';
-import edit from './edit.svg'
+import edit from './edit.svg';
+import comment from './reply.svg';
+import share from './share.svg';
+
 
 export const files = {
     search,
@@ -22,4 +25,6 @@ export const files = {
     logout,
     del,
     edit,
+    share,
+    comment,
 }

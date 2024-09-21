@@ -8,6 +8,7 @@ import LeftSidebar from "@/components/Leftbar";
 import Topbar from "@/components/Topbar";
 import RightSidebar from "@/components/Rightsidebar";
 import { NextAuthProvider } from "@/components/Providers";
+import WhatsappLive from "@/components/WhatsappLive";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,7 +45,7 @@ export default function RootLayout({
 
           <section className="main-container">
             <div className="w-full max-w-4xl">
-              {children}
+              {children} <WhatsappLive/>
             </div>
           </section>
 
@@ -57,3 +58,14 @@ export default function RootLayout({
     </html>
   );
 }
+
+// {
+//   isEditable && (
+//       <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit">
+//           <Link href={`/edit-post/${id}`}>
+//           <Image src={files.edit} alt="edit"/>
+//           </Link>
+//           <DeleteButton/>
+//       </div>
+//   )
+// }

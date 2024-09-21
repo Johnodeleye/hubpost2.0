@@ -190,3 +190,47 @@ textarea{
       display: none;
     }
   }
+
+  .popup-container {
+    /* ... other styles */
+    padding: 15px 30px; /* Adjust padding values as needed */
+  }
+
+  .whatsapp-link{
+    position: fixed;
+    bottom: -80px;
+    right: 40px;
+    z-index: 50;
+    transition: bottom 0.3s ease;
+  }
+
+  .whatsapp-link.visible{
+    bottom: 40px;
+  }
+
+  .whatsapp-icon{
+    width: 55px;
+    height: 55px;
+    transition: transform 0.3s ease;
+  }
+
+  .whatsapp-icon:hover{
+    transform : scale(1.2);
+  }
+
+  @media only screen and (max-width: 980px) {
+    .whatsapp-link{
+      position: fixed;
+      bottom: -80px;
+      right: 20px;
+      z-index: 50;
+      transition: bottom 0.3s ease;
+    }
+
+    .whatsapp-link.visible{
+      bottom: 70px;
+      margin-left: 3px;
+    }
+  
+  }
+  
