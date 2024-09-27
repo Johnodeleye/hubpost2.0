@@ -1,6 +1,8 @@
 {/**THIS PAGE IS TO DISPLAY JUST THE POSTS ITSELF ONLY WHEN CLICK ON IT */}
 import prisma from "@/lib/prismadb";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 
 export async function GET(
@@ -21,6 +23,13 @@ export async function PUT(
     req: Request,
     { params }: { params: { id: string } }
   ) {
+
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return NextResponse.json({ error: "Not authenticated" }, { status: 401});
+    }
+
     const { title, content, links, selectedCategory, imageUrl, publicId } =
       await req.json();
     const id = params.id;
@@ -50,6 +59,13 @@ export async function PUT(
     req: Request,
     { params }: { params: { id: string } }
   ) {
+
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return NextResponse.json({ error: "Not authenticated" }, { status: 401});
+    }
+
     const id = params.id;
     try {
       const post = await prisma.post.delete({ where: { id } });

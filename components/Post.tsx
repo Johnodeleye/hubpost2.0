@@ -3,7 +3,8 @@ import Link from "next/link"
 import offimage from '@/app/assets/thumbnail-placeholder.png'
 import userimage from '@/app/assets/user.svg'
 import DeleteButton from "./DeleteButton"
-import { files } from "@/app/assets/files"
+import { files } from "@/app/assets/files";
+import Verified from "./Verified"
 
 interface PostProps {
     id: string,
@@ -17,6 +18,13 @@ interface PostProps {
     links?: string[],
     category?: string
 }
+
+//List if Verified User
+const verifiedUserIds = ['66ef45f5a6138e4340dbe9f6',
+  '',
+  '',
+ ];
+ 
 const Post = ({
     id,
     author,
@@ -38,11 +46,14 @@ const Post = ({
 <div className="flex items-center mb-4">
   <Image
     src={authorimg || userimage}
+    width={24}
+    height={24}
     alt={title}
     className="rounded-full object-cover w-8 h-8 mr-2" // Adjust size as needed
   />
   <div className="flex items-center flex-grow">
-    <span className="font-bold text-green-400">{author}</span>
+  <h3 className='cursor-pointer text-green-400 font-bold'>{author}</h3>
+  {verifiedUserIds.includes(id) && <Verified />}
     {isEditable && (
       <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
         <Link href={`/edit-post/${id}`}>
@@ -57,6 +68,7 @@ const Post = ({
             <div className="w-full h-72 relative">
                 <Image
                 src={image || offimage}
+
                 alt={title}
                 className="object-cover rounded-md object-center"
                 fill

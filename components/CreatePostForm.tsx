@@ -1,28 +1,86 @@
 'use client';
-import { categoriesData } from "@/data"
+import { TCategory } from "@/app/types";
 import Link from "next/link";
-import { useState } from "react"
-const CreatePostForm = () => {
-    const [links, setLinks] = useState<string[]>([]);
-    const [linkInput, setLinkInput] = useState('');
+import router, { useRouter } from "next/navigation";
+import { useEffect, useState } from "react"
 
-    const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
-        e.preventDefault();
-        if (linkInput.trim() !== ''){
-            setLinks((prev) => [...prev, linkInput]);
-            setLinkInput('');
-        }
-    };
+const CreatePostForm = () => {
+  const [links, setLinks] = useState<string[]>([]);
+  const [linkInput, setLinkInput] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [categories, setCategories] = useState<TCategory[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [publicId, setPublicId] = useState("");
+  const [error, setError] = useState("");
+
+  const router = useRouter();
+
+useEffect(() => {
+  const fetchAllCategories = async () => {
+    const res = await fetch("api/categories");
+    const catNames = await res.json();
+    setCategories(catNames);
+  };
+  fetchAllCategories();
+}, []);
+
+const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
+    e.preventDefault();
+    if (linkInput.trim() !== ''){
+    setLinks((prev) => [...prev, linkInput]);
+    setLinkInput('');
+       }
+  };
 
     const deleteLink = (index: number) => {
         setLinks((prev) => prev.filter((_, i) => i !== index))
     }
+
+    const handleSubmit = async (e: React.FormEvent ) => {
+      e.preventDefault();
+
+      if (!title || !content) {
+        setError("Title and content are required");
+        return;
+      }
+
+      try {
+        const res = await fetch("api/posts", {
+          method: "POST",
+          headers:{
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            title, content, links, selectedCategory, imageUrl, publicId,
+          }),
+        });
+
+        if(res.ok) {
+          router.push("/dashboard")
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     return (
         <div className="overflow-hidden">
            <h2 className="text-green-400 text-center">Share Your Voice🔥📢</h2>
-           <form action="" className="flex flex-col gap-2">
-            <input type="text" placeholder="Title"/>
-            <code><textarea placeholder="Content" cols={27} className="  w-full"></textarea></code>
+           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <input 
+            onChange={(e) => setTitle(e.target.value)} 
+            type="text" 
+            placeholder="Title"/>
+
+            <code>
+              <textarea 
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Content" cols={27} 
+              className="w-full">
+              </textarea>
+              </code>
 
             {links && links.map((link, i) => (
                 <div key={i} className="flex items-center gap-4">
@@ -70,33 +128,37 @@ const CreatePostForm = () => {
                 value={linkInput}
               
                 />
-<button onClick={addLink} className="btn w-fit flex gap-2 items-center overflow-x-hidden overflow-hidden mb-4 lg:ml-3">
-  <span>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      className="w-5 h-5 lg:w-10"
-    >
-      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-    </svg>
-    <span className="text-on-desktop">Add</span> </span>
-</button>
+        <button onClick={addLink} className="btn w-fit flex gap-2 items-center overflow-x-hidden overflow-hidden mb-4 lg:ml-3">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-5 h-5 lg:w-10"
+            >
+              <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+            </svg>
+            <span className="text-on-desktop">Add</span> </span>
+        </button>
 
             </div>
-            
-            <select name="" id="" className="p-3 rounded-md border border-green-400 appearance-none bg-transparent text-gray-400 mt-3">
-                <option value="">Select A Category</option>
-                {
-                    categoriesData && categoriesData.map(category => (
-                        <option className="bg-dark-1" key={category.id} value={category.name}>{category.name}</option>
-                    ))
-                }
-            </select>
+
+          <select
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="p-3 rounded-md border border-green-400 appearance-none bg-transparent text-gray-400 mt-3"
+        >
+          <option className="bg-dark-1" value="">Select A Category</option>
+          {categories &&
+            categories.map((category) => (
+              <option key={category.id} className="bg-dark-1" value={category.catName}>
+                {category.catName}
+              </option>
+            ))}
+        </select>
 
             <button className="primary-btn font-bold" type="submit">Post</button>
 
-            <div className="p-2 text-red-500 font-bold">Error Message</div>
+            {error && <div className="p-2 text-red-500 font-bold">{error}</div>}
            </form>
         </div>
     )

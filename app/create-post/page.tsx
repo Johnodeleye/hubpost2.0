@@ -11,7 +11,7 @@ export default async function page() {
     if (!session) {
         redirect('/sign-in')
     }
-
+    
     return (
         <div>
             <CreatePostForm/>
