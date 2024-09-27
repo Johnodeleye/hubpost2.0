@@ -16,5 +16,6 @@ export type TPost = {
     author: {
         name: string;
         image: string;
+        id: string;
     };
 };

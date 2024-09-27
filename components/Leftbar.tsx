@@ -4,8 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { files } from '@/app/assets/files';
+import { signOut, useSession } from 'next-auth/react';
 
 function LeftSidebar() {
+    const { data: session } = useSession();
     const router = useRouter();
     const pathname = usePathname();
     const logout = files.logout;
@@ -39,6 +41,7 @@ function LeftSidebar() {
                 )}
                 )}
             </div>
+            {session?.user ? (
                         <div className="px-6 mt-10">
                         <button>
                         <div className="flex gap-4 p-4 cursor-pointer">
@@ -47,6 +50,9 @@ function LeftSidebar() {
                         </div>
                     </button>
             </div>
+            ):(
+                <div></div>
+            )}
         </section>
     )
 }

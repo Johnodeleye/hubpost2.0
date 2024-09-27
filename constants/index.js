@@ -21,11 +21,11 @@ export const sidebarLinks = [
       route: "/create-post",
       label: "Create Thread",
     },
-    {
-      imgURL: files.group,
-      route: "/communities",
-      label: "Communities",
-    },
+    // {
+    //   imgURL: files.group,
+    //   route: "/communities",
+    //   label: "Communities",
+    // },
     {
       imgURL: files.user,
       route: "/dashboard",

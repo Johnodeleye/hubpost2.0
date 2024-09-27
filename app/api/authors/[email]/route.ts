@@ -3,16 +3,32 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(
-    req:Request,
-    {params }: {params: { email: string } }
+  req: Request,
+  { params }: { params: { email: string } }
 ) {
-try {
+  try {
     const email = params.email;
-    const posts = await prisma.user.findUnique({ where: { email }, include:{posts: { orderBy:{ createdAt: "desc" } } }, 
+    const posts = await prisma.user.findUnique({
+      where: { email },
+      include: {
+        posts: {
+          orderBy: { createdAt: "desc" },
+          include: {
+            author: {
+              select: {
+                name: true,
+                image: true,
+                id: true,
+              },
+            },
+          },
+        },
+      },
     });
+
     return NextResponse.json(posts);
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({message: "Couldn't fetch post"});
-    }
+    return NextResponse.json({ message: "Couldn't fetch post" });
+  }
 }

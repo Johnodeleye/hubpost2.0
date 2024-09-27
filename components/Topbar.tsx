@@ -35,10 +35,14 @@ function Topbar() {
     <nav className="topbar">
       <div>
         <Link href={'/'}>
-          <Image src={logo} width={110} height={110} alt="hubpost" />
+              <Image
+                src={logo}
+                className="w-auto h-8"
+                alt='hubpost'
+                />
           {/* <h1 className="text-4xl font-bold tracking-tighter text-green-400">HubPost</h1> */}
         </Link>
-        <p className="whitespace-nowrap text-sm font-semibold">
+        <p className="whitespace-nowrap text-sm font-semibold text:sm text-gray-200">
           Spark💖, Connect🤑, and Ignite🔥
         </p>
       </div>

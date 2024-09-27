@@ -4,6 +4,7 @@ import Image from "next/image"
 import github from '@/app/assets/githubblack.png';
 import google from '@/app/assets/google-logo.svg';
 import { signIn } from "next-auth/react";
+import SlideBar from "./SlideBar";
 
 const SigninBtns = () => {
     return (
@@ -24,6 +25,7 @@ const SigninBtns = () => {
                 Sign In with Google
             </button>
           </div>
+          
         </div>
     )
 }
