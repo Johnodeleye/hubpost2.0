@@ -50,6 +50,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+  bio           String? @default("Hey there!, I'm on HubPost!")
   accounts      Account[]
   sessions      Session[]
   posts         Post[]

@@ -16,6 +16,7 @@ interface PostProps {
     date: string,
     image?: string,
     authorEmail?: string,
+    authorbio?: string,
     title: string,
     content: string,
     links?: string[],
@@ -24,7 +25,7 @@ interface PostProps {
 
 //List if Verified User
 const verifiedUserIds = ['66ef45f5a6138e4340dbe9f6',
-  '66ef46f5a6138e4340dbe9fa',
+  '66f6a351bc2ce8c99e4fa4bb',
   '',
  ];
 
@@ -62,6 +63,7 @@ const Post = async ({
     date,
     image,
     authorEmail,
+    authorbio,
     title,
     content,
     links,
@@ -76,7 +78,6 @@ const Post = async ({
 
   return (
     <div className="my-4 border-b border-b-300 py-8">
-
       <div className="flex items-center mb-4">
         <Image
           src={authorimg || userimage}
@@ -172,6 +173,7 @@ Posted {''} {formattedDate} by {''}
       <button>
         <Image src={files.comment} alt={'reply'} />
       </button>
+      
     </div>
   </div>
 )

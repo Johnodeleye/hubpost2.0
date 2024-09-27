@@ -17,5 +17,6 @@ export type TPost = {
         name: string;
         image: string;
         id: string;
+        bio: string;
     };
 };
