@@ -10,7 +10,18 @@ export async function GET(
     const posts = await prisma.user.findUnique({
       where: { email },
       include: {
-        posts: { orderBy: { createdAt: "desc" } },
+        posts: {
+          orderBy: { createdAt: "desc" },
+          include: {
+            author: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -20,4 +31,3 @@ export async function GET(
     return NextResponse.json({ message: "Could not fetch post" });
   }
 }
-

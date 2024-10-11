@@ -54,7 +54,7 @@ function Topbar() {
             ref={popupRef}
             className={`absolute z-30 right-0 mr-10 top-20 p-6 shadow-lg shadow-green-600 border border-green-500 rounded-md  flex-col gap-2 text-right min-w-[160px] bg-dark-1 ${isPopupVisible ? 'flex' : 'hidden'}`}>
 
-                <div className="text-green-500 font-semibold">{session?.user?.name}
+                <div className="text-green-500 font-semibold text-left">Hey,{''}{session?.user?.name}
                 </div>
                 <div className="text-justify">{session?.user?.email}</div>
                 <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 hover:text-dark-1 rounded-xl text-justify" href={'/dashboard'}>🟢Dashboard</Link>
@@ -88,7 +88,7 @@ function Topbar() {
                       width={36}
                       height={36}
                       alt="profile image"
-                      className="rounded-full md:mr-9"
+                      className="rounded-full md:mr-9 hover:scale-105 transition shadow"
                     />
                     <span>
                     <svg

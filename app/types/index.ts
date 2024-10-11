@@ -17,6 +17,15 @@ export type TPost = {
         name: string;
         image: string;
         id: string;
-        bio: string;
     };
 };
+
+// export type TUser = {
+//     author: {
+//         id: string;
+//         name: string;
+//         // image: string;
+//         // bio: string;
+//     };
+//     authorEmail: string,
+// };

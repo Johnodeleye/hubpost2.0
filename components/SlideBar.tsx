@@ -9,7 +9,7 @@ import  '@/app/globals.css';
 import logo from '@/app/assets/Logo White.png';
 import Image from 'next/image';
 const navigation = [
-  { name: 'Learn More', href: '/learn' },
+  { name: 'Learn More', href: '/LearnMore' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Founder', href: '/founder' },
   { name: 'Contact', href: '/contact' },

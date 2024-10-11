@@ -40,16 +40,18 @@ const page = async ({}) => {
   return (
     <div className="">
     {session && (
-      <h1 className="font-bold text-heading1-bold"><span className="text-green-500  whitespace-nowrap">Welcome Back, </span>{session?.user?.name}!</h1>
+      <h1 className="font-bold text-heading1-bold"><span className="text-green-500  whitespace- sm:text-ellipsis">Welcome Back, </span>{session?.user?.name}!</h1>
     )}
       {posts && posts.length > 0 ? (
-              posts.map((post: TPost) => <Post 
+              posts.map((post: TPost) => 
+              <Post 
               key={post.id}
               id={post.id}
-              author={post.author.name}
-              authorimg={post.author.image}
-              authorid={post.author.id}
+              author={post.author?.name || "Unknown Author"}
+              authorid={post.author?.id}
+              authorimg={post.author?.image}
               authorEmail={post.authorEmail}
+              // authorbio={post.author.bio}
               date={post.createdAt}
               image={post.imageUrl}
               category={post.catName}

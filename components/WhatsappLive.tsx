@@ -92,20 +92,18 @@ const WhatsappLive = () => {
       {showPopup && (
         <div className=" fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 bg-dark-1 shadow-lg shadow-green-600 rounded-md shadow-outline popup-container">
           <div className="flex justify-between items-center text-center mb-4">
-            <h3 className="text-base lg:text-lg font-bold text-green-400">Share Your Feedback 💯</h3>
-            <span className="">
-           
-            </span>
+            <h3 className="text-base lg:text-lg font-bold text-green-400 md:text-center">Share Your <span className="ml-5 lg:ml-0">Feedback 💯</span></h3>
+
             <button className="text-red-600 font-bold lg:ml-4 tooltip" onClick={() => setShowPopup(false)}>
               ❌
             </button>
           </div>
           <p className="text-sm text-ellipsis text-gray-600 mb-4">Help us improve by sharing your feedback about HubPost</p>
           <form className="flex flex-col gap-2">
-            <code><input required type="text" name="name" className="border rounded-md p-2 bg-dark-4 lg:w-full" placeholder="Enter your name" id="name" /></code>
-            <code><input required type="email" name="email" className="border rounded-md p-2 bg-dark-4 lg:w-full" placeholder="Enter your email" id="email" /></code>
-           <code> <textarea required name="message" className="border rounded-md p-2 bg-dark-4 lg:w-full text-ellipsis" placeholder="Your message...." id="message"></textarea> </code>
-            <button onClick={sendWhatsapp} type="submit" className="bg-green-400 text-white rounded-md p-2 mt-2">Send {''}{''}➡</button>
+            <code><input required type="text" name="name" className="border rounded-md p-2 bg-dark-4 lg:w-full sm:w-11/12" placeholder="Enter your name" id="name" /></code>
+            <code><input required type="email" name="email" className="border rounded-md p-2 bg-dark-4 lg:w-full sm:w-11/12" placeholder="Enter your email" id="email" /></code>
+           <code> <textarea required name="message" className="border rounded-md p-2 bg-dark-4 lg:w-full text-ellipsis sm:w-11/12" placeholder="Your message...." id="message"></textarea> </code>
+            <button onClick={sendWhatsapp} type="submit" className="bg-green-400 text-white rounded-md p-2 mt-2 sm:w-11/12">Send {''}{''}➡</button>
           </form>
         </div>
       )}
