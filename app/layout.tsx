@@ -8,6 +8,7 @@ import RightSidebar from "@/components/Rightsidebar";
 import { NextAuthProvider } from "@/components/Providers";
 import WhatsappLive from "@/components/WhatsappLive";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -52,6 +53,7 @@ export default function RootLayout({
         </main>
 
         <Bottombar/>
+        <Toaster/>
         </NextAuthProvider>
       </body>
     </html>

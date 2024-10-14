@@ -26,8 +26,8 @@ body {
 }
 
 
-p.content{
-  @apply leading-loose
+.content {
+  line-height: 1.5; /* or any other value that suits your design */
 }
 
 .link{
@@ -256,9 +256,10 @@ h3{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 70px; /* Adjust this value as needed */
+    max-width: 70px; 
   }
 }
+
 
 /* For larger screens */
 @media (min-width: 769px) {
@@ -283,3 +284,15 @@ h3{
     white-space: normal;
   }
 }
+
+@media (max-width: 768px) {
+  .truncate-link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 150px; 
+  }
+}
+
+
+

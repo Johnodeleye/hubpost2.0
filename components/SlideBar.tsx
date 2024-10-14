@@ -11,9 +11,9 @@ import Image from 'next/image';
 const navigation = [
   { name: 'Learn More', href: '/LearnMore' },
   { name: 'FAQ', href: '/faq' },
-  { name: 'Founder', href: '/founder' },
+  { name: 'Founder', href: 'https://thefuturefounder.onrender.com' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Join Community', href: '/social' },
+  { name: 'Join Community', href: 'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B' },
 ]
 
 export default function Example() {

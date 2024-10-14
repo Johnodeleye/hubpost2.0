@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { files } from '@/app/assets/files';
 import { signOut, useSession } from 'next-auth/react';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 function LeftSidebar() {
     const { data: session } = useSession();
     const router = useRouter();
     const pathname = usePathname();
     const logout = files.logout;
+
     
     return (
         <section className="custom-scrollbar leftsidebar">
@@ -40,6 +42,14 @@ function LeftSidebar() {
                     </Link>
                 )}
                 )}
+            </div>
+            <div className="px-6 mt-0">
+                        <Link href={'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B'}>
+                        <div className="flex gap-4 p-4 cursor-pointer">
+                            <Image src={files.group}alt="Logout" width={24} height={24}/>
+                            <p className="text-green-600 max-lg:hidden">Join Community</p>
+                        </div>
+                    </Link>
             </div>
             {session?.user ? (
                         <div className="px-6 mt-10">

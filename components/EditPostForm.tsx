@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import router, { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast";
 
 const EditPostForm = ({post}: {post: TPost}) => {
   const [links, setLinks] = useState<string[]>([]);
@@ -16,7 +17,6 @@ const EditPostForm = ({post}: {post: TPost}) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [publicId, setPublicId] = useState("");
-  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -98,11 +98,13 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
       e.preventDefault();
 
       if (!title || !content) {
-        setError("Title and content are required");
+        const errorMessage = 'Title and Content must be Provided!'
+        toast.error(errorMessage);
         return;
       }
 
       try {
+        toast.loading('Updating Your Post!')
         const res = await fetch(`/api/posts/${post.id}`, {
           method: "PUT",
           headers:{
@@ -113,8 +115,13 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
           }),
         });
 
+        toast.dismiss(); // Dismiss loading toast
+
         if(res.ok) {
+          toast.success('Post Updated Successfully!')
           router.push("/dashboard")
+        }else{
+          toast.error('Something went wrong, Please try again later')
         }
       } catch (error) {
         console.log(error);
@@ -159,7 +166,7 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
                   />
                 </svg>
                     </span>
-                    <Link className="link" href={link}>{link}</Link>
+                    <Link className="link truncate-link" href={link}>{link}</Link>
                     <span className="cursor-pointer" onClick={() => deleteLink(i)}>
                     <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -231,8 +238,6 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
         </select>
 
             <button className="primary-btn font-bold" type="submit"> Update Post</button>
-
-            {error && <div className="p-2 text-red-500 font-bold">{error}</div>}
            </form>
         </div>
     )

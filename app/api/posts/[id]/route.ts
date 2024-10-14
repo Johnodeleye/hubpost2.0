@@ -6,17 +6,20 @@ import { authOptions } from "../../auth/[...nextauth]/route";
 
 
 export async function GET(
-    req:Request,
-    {params }: {params: { id: string } }
+  req: Request,
+  { params }: { params: { id: string } }
 ) {
-try {
+  try {
     const id = params.id;
-    const post = await prisma.post.findUnique({ where: { id } });
+    const post = await prisma.post.findUnique({
+      where: { id },
+      include: { author: { select: { name: true, image: true, id: true, email: true } } },
+    });
     return NextResponse.json(post);
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({message: "Couldn't fetch post"});
-    }
+    return NextResponse.json({ message: "Couldn't fetch post" });
+  }
 }
 
 export async function PUT(

@@ -29,8 +29,13 @@ export const sidebarLinks = [
     {
       imgURL: files.user,
       route: "/dashboard",
-      label: "Profile",
+      label: "Dashboard",
     },
+    // {
+    //   imgURL: files.user,
+    //   route: "https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B",
+    //   label: "Join Community",
+    // },
   ];
   
   // //This profileTabs is what is in the tabList in the user profile

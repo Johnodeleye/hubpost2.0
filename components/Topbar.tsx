@@ -57,8 +57,9 @@ function Topbar() {
                 <div className="text-green-500 font-semibold text-left">Hey,{''}{session?.user?.name}
                 </div>
                 <div className="text-justify">{session?.user?.email}</div>
-                <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 hover:text-dark-1 rounded-xl text-justify" href={'/dashboard'}>🟢Dashboard</Link>
+                <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 hover:text-dark-1 rounded-xl text-justify" href={'/dashboard'}>🟢Go to Profile</Link>
                 <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 rounded-xl text-justify hover:text-dark-1" href={'/create-post'}>🟢Create Post</Link>
+                <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 rounded-xl text-justify hover:text-dark-1" href={'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B'}>🟢Join Community</Link>
                   <button onClick={() => signOut()} className="btn">
                       Sign Out
                   </button>

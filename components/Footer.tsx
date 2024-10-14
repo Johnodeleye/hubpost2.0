@@ -1,6 +1,49 @@
+import Image from "next/image"
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa"
+import logo from '@/app/assets/Logo White.png';
+
 const Footer = () => {
     return (
-        <footer className="py-3 text-gray-400">HubPost &copy; 2024</footer>
+        <footer className="p-5 text-left text-white bg-transparent pb-20">
+  <p className=" md:mt-0 copy text-center">&copy; 2024 HubPost. All rights reserved.</p>
+  <ul className="flex justify-center mb-4">
+    <li className="mr-4">
+      <a href="#" className="text-green-400 hover:text-gray-400">
+        Terms and Conditions
+      </a>
+    </li>
+    <li className="mr-4">
+      <a href="#" className="text-green-400 hover:text-gray-400">
+        Privacy Policy
+      </a>
+    </li>
+    <li>
+      <a href="#" className="text-green-400 hover:text-gray-400">
+        Contact Us
+      </a>
+    </li>
+  </ul>
+  <div className="flex justify-center mb-9 mr-5">
+    <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="mr-4 text-white hover:text-gray-400">
+      <Image src={logo}   className="w-auto h-8 mr-2"   alt='hubpost'   />
+    </a>
+    <a href="#" className="mr-4 text-white hover:text-green-400">
+      <FaTwitter className="w-6 h-8" />
+    </a>
+    <a href="#" className="mr-4 text-white hover:text-green-400">
+      <FaFacebook className="w-6 h-8" />
+    </a>
+    <a href="#" className="mr-4 text-white hover:text-green-400">
+      <FaLinkedin className="w-6 h-8" />
+    </a>
+    <a href="#" className="mr-4 text-white hover:text-green-400">
+      <FaInstagram className="w-6 h-8" />
+    </a>
+    <a href="#" className="text-white hover:text-green-400">
+      <FaWhatsapp className="w-6 h-8" />
+    </a>
+  </div>
+</footer>
     )
 }
 

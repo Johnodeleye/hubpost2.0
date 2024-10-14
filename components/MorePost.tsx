@@ -55,7 +55,7 @@ const verifiedUserIds = ['66ef45f5a6138e4340dbe9f6',
   }
 }
 
-const Post = async ({
+const MorePost = async ({
     id,
     author,
     authorimg,
@@ -88,7 +88,7 @@ const Post = async ({
         />
         <div className="flex items-center flex-grow">
           <h4 className='text-light-1 text-base-semibold'>
-          <Link href={`/authors/${authorEmail}`}>
+          <Link href={`/user/${authorid}`}>
             {author}
             </Link>
             </h4>
@@ -121,10 +121,10 @@ const Post = async ({
 
       <h2 className="text-heading2-semibold mt-2">{title}</h2>
       <div>
-          <div className="content text-base-medium mt-2 whitespace-pre-line truncatepost sm:truncatepost-none">
-      {content}
-      </div>
-          <Link className="text-green-400 font-bold lg:hidden md:hidden" href={`/posts/${id}`}>Read More</Link>
+      <div className="content text-base-medium mt-2 whitespace-pre-line">
+  {content}
+</div>
+          {/* <Link className="text-green-400 font-bold lg:hidden md:hidden" href={`/posts/${id}`}>Read More</Link> */}
           </div>
 
           {links && links.length > 0 ? (
@@ -145,7 +145,7 @@ const Post = async ({
                     d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
                   />
                 </svg>
-                <Link className="link truncate-link " href={link}>{link}</Link>
+                <Link className="link" href={link}>{link}</Link>
               </div>
             ))}
           </div>
@@ -179,4 +179,4 @@ Posted {''} {formattedDate} by {''}
 )
 }
 
-export default Post
+export default MorePost

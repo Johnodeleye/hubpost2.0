@@ -65,14 +65,14 @@ export default function CategoriesList() {
       {showMore && (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-50">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-dark p-9 rounded shadow shadow-green-400 px-9 py-10 pb-20 pt-8 whitespace-nowrap lg:px-20 lg:py-15">
-            <h1 className="text-lg mb-2 font-bold text-center text-white bg-green-600 rounded-xl">
+            <h1 className="text-heading4-medium mb-2 text-center text-white bg-green-600 rounded-md font-bold">
               All Categories
             </h1>
             <ul className="list-none">
               {categories.map((category) => (
                 <li key={category.id}>
                   <Link
-                    className="text-blue-500 hover:underline"
+                    className="text-green-400 text-base-semibold hover:bg-white rounded-md px-3"
                     href={`/categories/${category.catName}`}
                   >
                     {category.catName}

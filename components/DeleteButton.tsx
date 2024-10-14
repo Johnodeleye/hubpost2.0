@@ -3,6 +3,7 @@ import Image from "next/image"
 import { files } from "@/app/assets/files"
 import Alert from './alert';
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface DeleteButtonProps {
   id: string;
@@ -22,20 +23,24 @@ export default function DeleteButton({ id }: DeleteButtonProps) {
     const handleDelete = async () => {
       setIsLoading(true);
       try {
+        toast.loading('Deleting Post')
         const res = await fetch(`/api/posts/${id}`, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",
           },
         });
-  
+
+        toast.dismiss(); // Dismiss loading toast
+
         if (res.ok) {
-          console.log("Post Deleted");
+          toast.success("Post Deleted");
           const post = await res.json();
           const {publicId} = post;
           await deleteImage(publicId);
         }
       } catch (error) {
+        toast.error('Failed to delete post');
         console.log(error)
       } finally {
         setIsLoading(false);

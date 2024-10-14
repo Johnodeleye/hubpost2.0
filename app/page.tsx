@@ -4,6 +4,7 @@ import LeftSidebar from "@/components/Leftbar";
 import Post from "@/components/Post";
 import Image from "next/image";
 import { TPost } from "./types";
+import Footer from "@/components/Footer";
 
 // Fetch posts API endpoint
 const POSTS_API = `${process.env.NEXTAUTH_URL}/api/posts`;
@@ -58,6 +59,7 @@ export default async function Home() {
           links={post.links || []}
         />
       ))}
+      <Footer/>
     </>
   );
 }
