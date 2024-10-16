@@ -7,6 +7,7 @@ import { files } from "@/app/assets/files";
 import Verified from "./Verified";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import CopyProfileId from "@/components/CopyProfile"
 
 interface PostProps {
     author: string,
@@ -87,25 +88,29 @@ const Page = async ({
                         {verifiedUserIds.includes(authorid) && <Verified />}
                         </span>
                     </div>
-                    <p className='text-base-medium text-gray-1'>@{authorEmail}</p>
+                    <p className='text-base-medium text-gray-1 truncate-email'>@{authorEmail}</p>
                     </div>
                 </div>
               </div>
+              
+              <p className='max-w-lg mt-2 text-base-regular text-light-2'>{authorbio}</p>
+              <div className="">
+  <p className='max-w-lg mt-2 text-base-regular text-light-2'>Profile ID: <span className="text-green-400 font-bold">{authorid}</span>
+  </p>
+  <CopyProfileId authorId={authorid} />
+</div>
 
               <div className='mt-4  bg-dark-3'>
               {isEditable && (
                 <Link href='/profile/edit'>
-                    <div className='flex cursor-pointer gap-3 rounded-lg bg-dark-3 px-4 py-2'>
+                    <div className='flex cursor-pointer gap-3 rounded-lg bg-gray-900 px-4 py-2'>
                     <Image src={files.edit} alt="edit" />
-              <p className='text-green-600'>Edit Profile</p>
+              <p className='text-green-400'>Edit Profile</p>
             </div>
           </Link>
              )}
             </div>
-              <div className="">
-              <p className='max-w-lg mt-1 text-base-regular text-light-2'>{authorbio}</p>
-              <p className='max-w-lg mt-2 text-base-regular text-light-2'>Profile ID: <span className="text-green-400 font-bold">{authorid}</span></p>
-              </div>
+
               <div className='h-0 mt-12.5 w-full bg-white'/>
             
         </div>

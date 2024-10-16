@@ -12,6 +12,8 @@ import edit from './edit.svg';
 import comment from './reply.svg';
 import share from './share.svg';
 import verified from './verified.png';
+import copy from './copy-link-16.png';
+import userinfo from './info-user-color-icon.png'
 
 export const files = {
     search,
@@ -28,4 +30,6 @@ export const files = {
     share,
     comment,
     verified,
+    copy,
+    userinfo,
 }

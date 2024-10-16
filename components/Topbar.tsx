@@ -37,13 +37,13 @@ function Topbar() {
         <Link href={'/'}>
               <Image
                 src={logo}
-                className="w-auto h-8"
+                className="w-auto h-12"
                 alt='hubpost'
                 />
           {/* <h1 className="text-4xl font-bold tracking-tighter text-green-400">HubPost</h1> */}
         </Link>
         <p className="whitespace-nowrap text-sm font-semibold text:sm text-gray-200">
-          Spark💖, Connect🤑, and Ignite🔥
+          Spark💖, Connect🤑, & Ignite🔥
         </p>
       </div>
 

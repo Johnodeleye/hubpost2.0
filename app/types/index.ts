@@ -21,10 +21,12 @@ export type TPost = {
     };
 };
 
-export type TAuthor = {
-
-      id: string;
-      name: string;
-      image: string;
-      bio: string;
+// "@/app/types.ts"
+export type TUser = {
+    email?: string;
+    id: string;
+    name: string;
+    image: string;
+    bio?: string;
   };
+  

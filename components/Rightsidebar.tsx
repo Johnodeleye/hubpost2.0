@@ -1,8 +1,36 @@
+import Link from "next/link";
+
 function RightSidebar() {
+    const quicks = [
+        {
+            title: 'Learn More',
+            link: 'http://www.',
+        },
+        {
+            title: 'Join Community',
+            link: 'http://www.'
+        },
+        {
+            title: 'Blog',
+            link: 'http://www.'
+        },
+        {
+            title: 'FAQ',
+            link: 'http://www.'
+        },
+    ]
     return (
         <section className="custom-scrollbar rightsidebar">
             <div className="flex flex-1 flex-col justify-start">
-                <h3 className="text-heading4-medium text-green-500">Suggested Communities</h3>
+                <h3 className="text-heading4-medium text-green-500">Suggested Links</h3>
+                {quicks.map(details => (
+                    <>
+                    <div className="text-base-medium mt-2 text-left hover:bg-green-500 py-1 rounded-md" key={details.title}>
+                        <a href={details.link}>🟢{details.title}</a>
+                    </div>
+                    <div className=" border-b border-gray-500 py-1" />
+                    </>
+                ))}
             </div>
 
             <div className="flex flex-1 flex-col justify-start">

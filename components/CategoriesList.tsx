@@ -72,7 +72,7 @@ export default function CategoriesList() {
               {categories.map((category) => (
                 <li key={category.id}>
                   <Link
-                    className="text-green-400 text-base-semibold hover:bg-white rounded-md px-3"
+                    className="text-green-400 text-base-semibold hover:bg-white rounded-xl px-3"
                     href={`/categories/${category.catName}`}
                   >
                     {category.catName}

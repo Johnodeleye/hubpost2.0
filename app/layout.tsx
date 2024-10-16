@@ -9,6 +9,7 @@ import { NextAuthProvider } from "@/components/Providers";
 import WhatsappLive from "@/components/WhatsappLive";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,14 +48,17 @@ export default function RootLayout({
             <div className="w-full max-w-4xl">
               {children} <WhatsappLive/>
             </div>
+            <Footer/>
           </section>
 
           <RightSidebar/>
+          
         </main>
-
+        
         <Bottombar/>
         <Toaster/>
         </NextAuthProvider>
+        
       </body>
     </html>
   );

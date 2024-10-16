@@ -4,7 +4,7 @@ import logo from '@/app/assets/Logo White.png';
 
 const Footer = () => {
     return (
-        <footer className="p-5 text-left text-white bg-transparent pb-20">
+        <footer className="p-5 text-left text-white bg-transparent pb-0">
   <p className=" md:mt-0 copy text-center">&copy; 2024 HubPost. All rights reserved.</p>
   <ul className="flex justify-center mb-4">
     <li className="mr-4">

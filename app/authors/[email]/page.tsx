@@ -1,4 +1,4 @@
-import { TAuthor, TPost } from "@/app/types";
+import { TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";
 
