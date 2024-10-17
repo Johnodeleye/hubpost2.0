@@ -67,6 +67,8 @@ const Page = async ({
 
   const formattedDate = formatPostDate(date);
 
+  const sessionEmail = session?.user?.email;
+
     return(
         <div className='flex flex-col justify-start w-full'>
             <div className='flex items-center justify between'>
@@ -102,7 +104,7 @@ const Page = async ({
 
               <div className='mt-4  bg-dark-3'>
               {isEditable && (
-                <Link href='/profile/edit'>
+                <Link href={`/edit-profile/${sessionEmail}`}>
                     <div className='flex cursor-pointer gap-3 rounded-lg bg-gray-900 px-4 py-2'>
                     <Image src={files.edit} alt="edit" />
               <p className='text-green-400'>Edit Profile</p>

@@ -59,7 +59,6 @@ export default async function Home() {
           links={post.links || []}
         />
       ))}
-      <Footer/>
     </>
   );
 }

@@ -24,8 +24,14 @@ export default async function EditAuthorProfile({ params }: { params: { email: s
     redirect("/sign-in");
   }
 
-  const email = params.email;
-  const author = await getAuthor(email);
+  const sessionEmail = session?.user?.email;
+  const requestedEmail = params.email;
+
+  if (sessionEmail !== requestedEmail) {
+    redirect("/dashboard"); // Redirect to dashboard if trying to access another user's profile
+  }
+
+  const author = await getAuthor(requestedEmail);
 
   return <>{author ? <EditProfileForm author={author} /> : <div>Invalid Author</div>}</>;
 }

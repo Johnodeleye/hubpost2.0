@@ -13,6 +13,9 @@ function Topbar() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
 
+  //this session email is very important to track someone's email
+  const sessionEmail = session?.user?.email;
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
         if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
@@ -37,7 +40,7 @@ function Topbar() {
         <Link href={'/'}>
               <Image
                 src={logo}
-                className="w-auto h-12"
+                className="w-auto h-8"  
                 alt='hubpost'
                 />
           {/* <h1 className="text-4xl font-bold tracking-tighter text-green-400">HubPost</h1> */}
@@ -54,10 +57,10 @@ function Topbar() {
             ref={popupRef}
             className={`absolute z-30 right-0 mr-10 top-20 p-6 shadow-lg shadow-green-600 border border-green-500 rounded-md  flex-col gap-2 text-right min-w-[160px] bg-dark-1 ${isPopupVisible ? 'flex' : 'hidden'}`}>
 
-                <div className="text-green-500 font-semibold text-left">Hey,{''}{session?.user?.name}
+                <div className="text-green-500 font-semibold text-left">Hey, {session?.user?.name}
                 </div>
                 <div className="text-justify">{session?.user?.email}</div>
-                <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 hover:text-dark-1 rounded-xl text-justify" href={'/dashboard'}>🟢Go to Profile</Link>
+                <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 hover:text-dark-1 rounded-xl text-justify" href={`/authors/${sessionEmail}`}>🟢Go to Profile</Link>
                 <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 rounded-xl text-justify hover:text-dark-1" href={'/create-post'}>🟢Create Post</Link>
                 <Link onClick={() => setIsPopupVisible(false)} className="hover:bg-green-500 rounded-xl text-justify hover:text-dark-1" href={'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B'}>🟢Join Community</Link>
                   <button onClick={() => signOut()} className="btn">

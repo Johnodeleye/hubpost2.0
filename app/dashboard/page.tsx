@@ -37,10 +37,23 @@ const page = async ({}) => {
     '',
    ];
 
+   const sessionEmail = session?.user?.email;
+
   return (
     <div className="">
     {session && (
-      <h1 className="font-bold text-heading1-bold"><span className="text-green-500  whitespace- sm:text-ellipsis">Welcome Back, </span>{session?.user?.name}!</h1>
+      <div className="flex flex-col gap-2 mb-4">
+  <h1 className="font-bold text-2xl text-white">
+    <span className="text-green-500">Welcome Back, </span>
+    {session?.user?.name}!
+  </h1>
+  <Link
+  href={`/authors/${sessionEmail}`}
+  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg w-fit"
+>
+  See Profile ➡
+</Link>
+</div>
     )}
       {posts && posts.length > 0 ? (
               posts.map((post: TPost) => 

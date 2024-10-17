@@ -6,9 +6,10 @@ import { CldUploadButton, CloudinaryUploadWidgetResults } from "next-cloudinary"
 import Image from "next/image";
 import { files } from "@/app/assets/files";
 import { useRouter } from 'next/router';
+import { redirect } from "next/navigation";
+import useNavigate  from 'next/navigation';
 
 const EditProfileForm = ({ author }: { author: any }) => {
-  const router = useRouter(); // Correct usage
 
   const [name, setName] = useState(author.name);
   const [bio, setBio] = useState(author.bio);
@@ -67,8 +68,12 @@ const EditProfileForm = ({ author }: { author: any }) => {
       });
       toast.dismiss();
       if (res.ok) {
-        toast.success('Profile Updated Successfully!');
-        router.push("/dashboard"); // Client-side redirect
+        toast.success('Profile Updated Successfully!', {
+          duration: 3000, // Display for 3 seconds
+        });
+        toast.success('You can now Go back to Profile', {
+          duration: 10000, 
+        });
       } else {
         toast.error('Something went wrong, Please try again later')
       }

@@ -120,12 +120,25 @@ const Post = async ({
       )}
 
       <h2 className="text-heading2-semibold mt-2">{title}</h2>
-      <div>
-          <div className="content text-base-medium mt-2 whitespace-pre-line truncatepost sm:truncatepost-none">
+      <div className="content text-base-medium mt-2 whitespace-pre-line">
+  {content.length > 300 ? ( // Adjust the character limit as needed
+    <>
+      <span className="truncate-post sm:truncate-post-none">
+        {content.substring(0, 300)}...
+      </span>
+      <Link
+        className="text-green-400 font-bold lg:hidden md:hidden"
+        href={`/posts/${id}`}
+      >
+        Read More
+      </Link>
+    </>
+  ) : (
+    <span className="truncate-post sm:truncate-post-none">
       {content}
-      </div>
-          <Link className="text-green-400 font-bold lg:hidden md:hidden" href={`/posts/${id}`}>Read More</Link>
-          </div>
+    </span>
+  )}
+</div>
 
           {links && links.length > 0 ? (
           <div className="my-4 flex flex-col gap-3">
@@ -165,13 +178,13 @@ Posted {''} {formattedDate} by {''}
 
     <div className="flex gap-4 mt-4">
       <button>
-        <Image src={files.comment} alt={'reply'} />
+        <Image src={files.heart} alt={'reply'} />
       </button>
       <button>
         <Image src={files.comment} alt={'reply'} />
       </button>
       <button>
-        <Image src={files.comment} alt={'reply'} />
+        <Image src={files.share} alt={'reply'} />
       </button>
       
     </div>

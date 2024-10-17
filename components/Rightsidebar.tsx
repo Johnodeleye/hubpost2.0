@@ -4,15 +4,15 @@ function RightSidebar() {
     const quicks = [
         {
             title: 'Learn More',
-            link: 'http://www.',
+            link: '/Learn More',
         },
         {
             title: 'Join Community',
-            link: 'http://www.'
+            link: 'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B.'
         },
         {
             title: 'Blog',
-            link: 'http://www.'
+            link: '/authors/info.futurehub1@gmail.com'
         },
         {
             title: 'FAQ',
