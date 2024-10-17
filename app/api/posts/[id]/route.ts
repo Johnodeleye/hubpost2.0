@@ -78,3 +78,5 @@ export async function PUT(
       return NextResponse.json({ message: "Error deleting the post" });
     }
   }
+
+  
