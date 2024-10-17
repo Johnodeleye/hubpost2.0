@@ -1,53 +1,99 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
 
-const getAuthors = async(email: string): Promise<TPost[]|null> =>{
-    try {
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}`, {cache:"no-store"});
+const getAuthors = async (email: string): Promise<TPost[] | null> => {
+  try {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}/posts`, { cache: "no-store" });
 
-        if (res.ok){
-            const authors = await res.json();
-            const posts = authors.posts;
-            return posts;
-        }
-    } catch (error) {
-        console.log(error);
-        
+    if (res.ok) {
+      const posts = await res.json();
+      return posts;
     }
-    return null;
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
 }
-const page = async ({
-    params,
-}: {
-    params: {email: string };
-}) => {
-    const user = params.email
-    const posts = await getAuthors(user);
 
-      // Early return if no posts
+const getAuthor = async (email: string): Promise<any> => {
+  try {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}`, { cache: "no-store" });
+
+    if (res.ok) {
+      const author = await res.json();
+      return author;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
+}
+
+const Page = async ({
+  params,
+}: {
+  params: { email: string };
+}) => {
+  const session = await getServerSession(authOptions);
+  const sessionEmail = session?.user?.email;
+  const user = params.email;
+  const posts = await getAuthors(user);
+  const author = await getAuthor(user);
+
   if (!posts || posts.length === 0) {
-    return (
-      <div className="py-6">
-        <h2>Author Not Found</h2>
-      </div>
-    );
+    if (sessionEmail === author?.email) {
+      return (
+        <div className="py-6">
+          <Author
+            author={author?.name || "Unknown Author"}
+            authorid={author?.id || "null"}
+            authorimg={author?.image || ""}
+            authorbio={author?.bio || ""}
+            authorEmail={author?.email || ""}
+            date={author?.createdAt || ""}
+            image={author?.imageUrl || ""}
+          />
+          <h2 className="mt-4">You haven't created any posts yet.</h2>
+          <Link href="/create-post">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg bg-green-500 mt-3">
+              Create Post
+            </button>
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div className="py-6">
+          <Author
+            author={author?.name || "Unknown Author"}
+            authorid={author?.id || "null"}
+            authorimg={author?.image || ""}
+            authorbio={author?.bio || ""}
+            authorEmail={author?.email || ""}
+            date={author?.createdAt || ""}
+            image={author?.imageUrl || ""}
+          />
+          <h2 className="mt-4">No posts available.</h2>
+        </div>
+      );
+    }
   }
 
-    return (
-        <div>
-{posts && (
-  <Author
-    key={posts[0].id}
-    author={posts[0].author?.name || "Unknown Author"}
-    authorid={posts[0].author?.id}
-    authorimg={posts[0].author?.image}
-    authorbio={posts[0].author?.bio}
-    authorEmail={posts[0].authorEmail}
-    date={posts[0].createdAt}
-    image={posts[0].imageUrl}
-  />
-)}
+  return (
+    <div>
+      <Author
+        author={author?.name || "Unknown Author"}
+        authorid={author?.id || "null"}
+        authorimg={author?.image || ""}
+        authorbio={author?.bio || ""}
+        authorEmail={author?.email || ""}
+        date={author?.createdAt || ""}
+        image={author?.imageUrl || ""}
+      />
 
       {posts.map((post: TPost) => (
         <Post
@@ -57,7 +103,6 @@ const page = async ({
           authorid={post.author?.id}
           authorimg={post.author?.image}
           authorEmail={post.authorEmail}
-          // authorbio={post.author.bio}
           date={post.createdAt}
           image={post.imageUrl}
           category={post.catName}
@@ -66,8 +111,9 @@ const page = async ({
           links={post.links || []}
         />
       ))}
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default page
+export default Page;
+

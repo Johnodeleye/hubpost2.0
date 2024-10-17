@@ -83,24 +83,22 @@ const Page = async ({
                         />
                     </div>
                     
-                    <div className='flex-1'>
-                    <div className='text-left text-heading3-bold text-light-1 flex gap-2'>
-                        {author}
-                        <span style={{ verticalAlign: 'bottom', marginLeft:'-09px', marginTop: '6px' }}>
-                        {verifiedUserIds.includes(authorid) && <Verified />}
-                        </span>
-                    </div>
-                    <p className='text-base-medium text-gray-1 truncate-email'>@{authorEmail}</p>
-                    </div>
+                    <div className="flex-1 flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="text-heading3-bold text-light-1">{author}</span>
+              <Verified authorId={authorid} />
+            </div>
+            <p className="text-base-medium text-gray-1 truncate-email">@{authorEmail}</p>
+          </div>
                 </div>
               </div>
               
               <p className='max-w-lg mt-2 text-base-regular text-light-2'>{authorbio}</p>
               <div className="">
-  <p className='max-w-lg mt-2 text-base-regular text-light-2'>Profile ID: <span className="text-green-400 font-bold">{authorid}</span>
-  </p>
-  <CopyProfileId authorId={authorid} />
-</div>
+          <p className='max-w-lg mt-2 text-base-regular text-light-2'>Profile ID: <span className="text-green-400 font-bold">{authorid}</span>
+          </p>
+          <CopyProfileId authorId={authorid} />
+        </div>
 
               <div className='mt-4  bg-dark-3'>
               {isEditable && (

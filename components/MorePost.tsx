@@ -92,7 +92,7 @@ const MorePost = async ({
             {author}
             </Link>
             </h4>
-          {verifiedUserIds.includes(authorid) && <Verified />}
+            <Verified authorId={authorid} />
           {isEditable && (
             <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
               <Link href={`/edit-post/${id}`}>
@@ -156,7 +156,7 @@ Posted {''} {formattedDate} by {''}
     <span className="author-name truncate sm:truncate-none">
       {author} 
     </span>
-    {verifiedUserIds.includes(authorid) && <Verified />}
+    <Verified authorId={authorid} />
   </span>
 </span>
 

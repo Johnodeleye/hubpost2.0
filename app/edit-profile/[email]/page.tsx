@@ -27,7 +27,7 @@ export default async function EditAuthorProfile({ params }: { params: { email: s
   const sessionEmail = session?.user?.email;
   const requestedEmail = params.email;
 
-  if (sessionEmail !== requestedEmail) {
+  if (!sessionEmail) {
     redirect("/dashboard"); // Redirect to dashboard if trying to access another user's profile
   }
 
