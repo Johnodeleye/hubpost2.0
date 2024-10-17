@@ -54,9 +54,16 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
- 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Comment Comment[]
+  // followers   User[]
+  // following    User[]
+  // posts      Post[]
+  // likes       Like[]
+  // dislikes    Like[]
   @@map("users")
-  // Comment Comment[]
+  
 }
  
 model VerificationToken {
@@ -80,9 +87,9 @@ model Post {
   author   User? @relation(fields: [authorEmail], references: [email])
   authorEmail String
   links       String[]
+  comments    Comment[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  // comments    Comment[]
 }
 
 model Category{
@@ -92,12 +99,14 @@ model Category{
   postIDs String[] @db.ObjectId
 }
 
-// model Comment {
-//   id       String   @id @default(auto()) @map("_id") @db.ObjectId
-//   postId   String   @db.ObjectId // Add @db.ObjectId()
-//   post     Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-//    author   User? @relation(fields: [authorEmail], references: [email])
-//   authorEmail String?
-//   content  String
-//   createdAt DateTime @default(now())
-// } 
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId    String   @db.ObjectId
+  authorId  String   @db.ObjectId
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime @default(now())
+
+  @@map("comments")
+}

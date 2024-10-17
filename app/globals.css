@@ -268,22 +268,7 @@ h3{
   }
 }
 
-/* For small screens */
-@media (max-width: 768px) {
-  .truncatepost {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 280px; /* Adjust this value as needed */
-  }
-}
 
-/* For larger screens */
-@media (min-width: 769px) {
-  .truncatepost-none {
-    white-space: normal;
-  }
-}
 
 @media (max-width: 768px) {
   .truncate-link {
@@ -303,6 +288,33 @@ h3{
   }
 }
 
+.truncate-post {
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Adjust the number of lines as needed */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remove this class or update media query */
+/*.sm\:truncate-post-none {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
+}*/
+
+/* Add this media query to display Read More on large screens */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+  .truncate-post {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  .read-more-link {
+    display: inline-block;
+  }
+}
 
 
 

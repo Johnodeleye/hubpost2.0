@@ -88,7 +88,7 @@ const MorePost = async ({
         />
         <div className="flex items-center flex-grow">
           <h4 className='text-light-1 text-base-semibold'>
-          <Link href={`/user/${authorid}`}>
+          <Link href={`/authors/${authorEmail}`}>
             {author}
             </Link>
             </h4>
@@ -120,12 +120,9 @@ const MorePost = async ({
       )}
 
       <h2 className="text-heading2-semibold mt-2">{title}</h2>
-      <div>
       <div className="content text-base-medium mt-2 whitespace-pre-line">
   {content}
 </div>
-          {/* <Link className="text-green-400 font-bold lg:hidden md:hidden" href={`/posts/${id}`}>Read More</Link> */}
-          </div>
 
           {links && links.length > 0 ? (
           <div className="my-4 flex flex-col gap-3">
@@ -145,7 +142,7 @@ const MorePost = async ({
                     d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
                   />
                 </svg>
-                <Link className="link" href={link}>{link}</Link>
+                <Link className="link truncate-link " href={link}>{link}</Link>
               </div>
             ))}
           </div>
@@ -165,13 +162,13 @@ Posted {''} {formattedDate} by {''}
 
     <div className="flex gap-4 mt-4">
       <button>
-        <Image src={files.comment} alt={'reply'} />
+        <Image src={files.heart} alt={'reply'} />
       </button>
       <button>
         <Image src={files.comment} alt={'reply'} />
       </button>
       <button>
-        <Image src={files.comment} alt={'reply'} />
+        <Image src={files.share} alt={'reply'} />
       </button>
       
     </div>

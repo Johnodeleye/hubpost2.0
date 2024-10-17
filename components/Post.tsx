@@ -7,6 +7,7 @@ import { files } from "@/app/assets/files";
 import Verified from "./Verified";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import ImageShowcase from "./imageViewer"
 
 interface PostProps {
     id: string,
@@ -105,12 +106,14 @@ const Post = async ({
       </div>
 
       <div className="w-full h-72 relative">
-        <Image
+        {/* <Image
           src={image || offimage}
           alt={title}
           className="object-cover rounded-md object-center"
           fill
-        />
+        /> */}
+          <ImageShowcase src={image ? image : offimage} alt={title}  />
+
       </div>
 
       {category && (
@@ -121,24 +124,24 @@ const Post = async ({
 
       <h2 className="text-heading2-semibold mt-2">{title}</h2>
       <div className="content text-base-medium mt-2 whitespace-pre-line">
-  {content.length > 300 ? ( // Adjust the character limit as needed
-    <>
-      <span className="truncate-post sm:truncate-post-none">
-        {content.substring(0, 300)}...
-      </span>
-      <Link
-        className="text-green-400 font-bold lg:hidden md:hidden"
-        href={`/posts/${id}`}
-      >
-        Read More
-      </Link>
-    </>
-  ) : (
-    <span className="truncate-post sm:truncate-post-none">
-      {content}
-    </span>
-  )}
-</div>
+      {content.length > 300 ? (
+        <>
+          <span className="truncate-post">
+            {content.substring(0, 300)}...
+          </span>
+          <Link
+            className="text-green-400 font-bold read-more-link"
+            href={`/posts/${id}`}
+          >
+            Read More
+          </Link>
+        </>
+      ) : (
+        <span className="truncate-post">
+          {content}
+        </span>
+      )}
+    </div>
 
           {links && links.length > 0 ? (
           <div className="my-4 flex flex-col gap-3">
