@@ -50,7 +50,7 @@ export async function POST(req: Request) {
   if (!commentContent) {
     return NextResponse.json(
       { error: "Comment content is required" },
-      { status: 500 }
+      { status: 500 } // Bad Request
     );
   }
 
@@ -80,9 +80,9 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const session = await getServerSession(authOptions);
 
-  // if (!session) {
-  //   return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  // }
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
 
   const commentId = req.url.split('/').pop();
 

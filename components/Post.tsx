@@ -91,7 +91,7 @@ const Post = async ({
             <Verified authorId={authorid} className=""/>
           {isEditable && (
             <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
-              <Link href={`/edit-post/${id}`}>
+              <Link href={`/edit-post/${id}#comments`}>
                 <Image src={files.edit} alt="edit" />
               </Link>
               <DeleteButton id={id}/>
@@ -174,25 +174,25 @@ Posted {''} {formattedDate} by {''}
   </span>
 </span>
 
-<div className="flex gap-4 mt-4">
-        <button>
-          <Image src={files.heart} alt={'like'} />
+    <div className="flex gap-3 mt-4">
+      <button>
+        <Image src={files.heart} width={28} height={28} alt={'like'} />
+      </button>
+      <Link href={`/posts/${id}#comments`}>
+        <button className="mt-2 ml-1">
+          <Image src={files.comment} width={32} height={32} alt={'reply'} />
         </button>
-        <Link href={`/posts/${id}/comments`}>
-          <button>
-            <Image src={files.comment} alt={'reply'} />
-          </button>
-        </Link>
-        <button>
-          <Image src={files.share} alt={'share'} />
-        </button>
-      </div>
-
-      <Link href={`/posts/${id}/comments`}>
-        <p className="text-gray-500 italic mt-3">
-          View comments
-        </p>
       </Link>
+      <button className="mt-1 mr-5">
+        <Image src={files.share} width={32} height={32} alt={'share'} />
+      </button>
+    </div>
+
+        <Link href={`/posts/${id}#comments`}>
+          <p className="text-gray-500 italic mt-3">
+            View comments
+          </p>
+        </Link>
   </div>
 )
 }

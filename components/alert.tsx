@@ -36,7 +36,7 @@ export default function Alert({ isOpen, onConfirm, onCancel, onClose }: AlertPro
                   </DialogTitle>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Are you sure you want to delete this Post? This action cannot be undone.
+                      Are you sure you want to delete this Comment? This action cannot be undone.
                     </p>
                   </div>
                 </div>

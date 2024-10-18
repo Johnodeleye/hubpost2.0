@@ -62,6 +62,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         authorEmail={comment.authorEmail}
         date={comment.createdAt}
         content={comment.content}
+        postId={comment.postId}
       />
     ))}
     </div>

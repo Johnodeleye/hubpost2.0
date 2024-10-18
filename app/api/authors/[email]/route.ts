@@ -32,3 +32,26 @@ export async function GET(
     return NextResponse.json({ message: "Could not fetch author" });
   }
 }
+export async function PUT(
+  req: Request,
+  { params }: { params: { email: string } }
+) {
+  try {
+    const email = params.email;
+    const { name, bio, imageUrl } = await req.json();
+
+    const updatedAuthor = await prisma.user.update({
+      where: { email },
+      data: {
+        name,
+        bio,
+        image: imageUrl,
+      },
+    });
+
+    return NextResponse.json(updatedAuthor);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Could not update author" }, { status: 500 });
+  }
+}

@@ -33,6 +33,7 @@ export type TAuthor = {
   };
 
   export type TComment = {
+    postId: string;
     createdAt: string;
     id: string;
     content: string;

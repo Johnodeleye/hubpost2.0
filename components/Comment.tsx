@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import userimage from '@/app/assets/user.svg';
 import Verified from "./Verified";
+import DeleteCommentButton from './DeleteCommentButton';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 interface CommentProps {
   id: string;
@@ -11,10 +14,14 @@ interface CommentProps {
   authorEmail?: string;
   date: string;
   content: string;
+  postId: string; // Add postId prop
 }
 
-const Comment = ({ id, author, authorimg, authorEmail, date, content, authorid }: CommentProps) => {
+const Comment = async ({ id, author, authorimg, authorEmail, date, content, authorid, postId }: CommentProps) => {
   const formattedDate = formatCommentDate(date);
+  
+  const session = await getServerSession(authOptions);
+  const isEditable = session && session?.user?.email === authorEmail;
 
   return (
     <div key={id} className="my-4 border-b border-b-300 py-4">
@@ -34,6 +41,11 @@ const Comment = ({ id, author, authorimg, authorEmail, date, content, authorid }
             <Verified authorId={authorid} className="ml-1" />
           </h4>
         </div>
+        {isEditable && (
+        <div className="ml-auto">
+          <DeleteCommentButton commentId={id} postId={postId} />
+        </div>
+        )}
       </div>
 
       <p className="content text-base-medium whitespace-pre-line">
@@ -43,7 +55,9 @@ const Comment = ({ id, author, authorimg, authorEmail, date, content, authorid }
       <span className="text-gray-400 m-1 text-sm mr-5 italic">
         Commented {formattedDate} by  {''}
         <span className="inline-flex items-center">
+        <span className="author-name truncate sm:truncate-none">
           {author}
+          </span>
           <Verified authorId={authorid} className="ml-1" />
         </span>
       </span>

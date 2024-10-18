@@ -1,19 +1,35 @@
 // components/CommentForm.jsx
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import toast from 'react-hot-toast';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { useSession } from 'next-auth/react';
 
 interface CommentFormProps {
   postId: string;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
+const CommentForm: React.FC<CommentFormProps> =  ({ postId }) => {
   const [commentContent, setCommentContent] = useState('');
+  const { data: session, status } = useSession(); // Get session
 
   const handleCommentSubmit = async (e: any) => {
     e.preventDefault();
+
+    if (!session) {
+      toast.error('You must login to post a comment');
+      return;
+    }
+
+    if (!commentContent) {
+      const errorMessage = 'Title and Content must be provided';
+      toast.error(errorMessage);
+      return;
+    }
+
     try {
-        toast.loading('Uploading Comment')
+      toast.loading('Uploading Comment')
       const response = await fetch(`/api/comments/${postId}`, {
         method: 'POST',
         headers: {
@@ -31,13 +47,14 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
   };
 
   return (
-    <form onSubmit={handleCommentSubmit} className="flex flex-wrap justify-center mb-4">
+    <form onSubmit={handleCommentSubmit} className="flex flex-wrap justify-center mb-4" id="comments">
       <input
         type="text"
         value={commentContent}
         onChange={(e) => setCommentContent(e.target.value)}
         placeholder="Write a comment..."
         className="w-full p-2 pl-10 text-sm text-green-500 border-gray-300 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-gray-600 lg:w-3/4 md:w-3/4 sm:w-full"
+        required
       />
       <button
         type="submit"
