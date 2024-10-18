@@ -1,7 +1,8 @@
-import { TPost } from "@/app/types";
+import { TPost, TComment } from "@/app/types";
+import Comment from "@/components/Comment";
+import CommentForm from "@/components/CommentForm";
 import Footer from "@/components/Footer";
 import MorePost from "@/components/MorePost";
-import Post from "@/components/Post";
 
 const getPost = async (id: string): Promise<TPost | null> => {
   try {
@@ -9,7 +10,9 @@ const getPost = async (id: string): Promise<TPost | null> => {
 
     if (res.ok) {
       const post = await res.json();
-      return post;
+      const commentsRes = await fetch(`${process.env.NEXTAUTH_URL}/api/comments/${id}`);
+      const comments = await commentsRes.json();
+      return { ...post, comments };
     }
   } catch (error) {
     console.log(error);
@@ -46,7 +49,21 @@ const page = async ({ params }: { params: { id: string } }) => {
         content={post.content}
         links={post.links || []}
       />
-      <Footer/>
+
+      <CommentForm postId={post.id} />
+
+      {post.comments.map((comment: TComment) => (
+      <Comment
+        key={comment.id}
+        id={comment.id}
+        author={comment.author?.name || "Unknown Author"}
+        authorid={comment.author.id}
+        authorimg={comment.author?.image}
+        authorEmail={comment.authorEmail}
+        date={comment.createdAt}
+        content={comment.content}
+      />
+    ))}
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/route";
 
 
+// pages/api/posts/[id]/route.js
+
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
@@ -13,7 +15,18 @@ export async function GET(
     const id = params.id;
     const post = await prisma.post.findUnique({
       where: { id },
-      include: { author: { select: { name: true, image: true, id: true, email: true } } },
+      include: {
+        author: {
+          select: { name: true, image: true, id: true, email: true }
+        },
+        comments: {
+          include: {
+            author: {
+              select: { name: true, email: true }
+            }
+          }
+        }
+      }
     });
     return NextResponse.json(post);
   } catch (error) {
@@ -78,5 +91,6 @@ export async function PUT(
       return NextResponse.json({ message: "Error deleting the post" });
     }
   }
+
 
   

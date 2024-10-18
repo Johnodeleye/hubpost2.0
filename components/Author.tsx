@@ -13,8 +13,6 @@ interface PostProps {
     author: string,
     authorimg?: string,
     authorid: string,
-    date: string,
-    image?: string,
     authorEmail?: string,
     authorbio?: string,
 }
@@ -55,8 +53,6 @@ const Page = async ({
     author,
     authorimg,
     authorid,
-    date,
-    image,
     authorEmail,
     authorbio,
 }: PostProps) => {
@@ -65,7 +61,7 @@ const Page = async ({
 
   const isEditable = session && session?.user?.email === authorEmail;
 
-  const formattedDate = formatPostDate(date);
+  // const formattedDate = formatPostDate(date);
 
   const sessionEmail = session?.user?.email;
 

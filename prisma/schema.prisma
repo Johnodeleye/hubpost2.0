@@ -47,6 +47,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments Comment[]
 }
 
 model VerificationToken {
@@ -71,6 +72,7 @@ model Post {
   links       String[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  comments   Comment[]
 }
 
 model Category {
@@ -78,4 +80,15 @@ model Category {
   catName String   @unique
   posts   Post[]
   postIDs String[] @db.ObjectId
+}
+
+model Comment {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  postId    String    @db.ObjectId
+  post      Post      @relation(fields: [postId], references: [id])
+  author    User      @relation(fields: [authorEmail], references: [email])
+  authorEmail String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }

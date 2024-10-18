@@ -1,25 +1,12 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { TPost } from "@/app/types";
+import { TAuthor, TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";
 import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react"; // Import useSession hook
 import Link from "next/link";
 
-const getAuthors = async (email: string): Promise<TPost[] | null> => {
-  try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}/posts`, { cache: "no-store" });
-
-    if (res.ok) {
-      const posts = await res.json();
-      return posts;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-  return null;
-}
-
-const getAuthor = async (email: string): Promise<any> => {
+const getAuthors = async (email: string): Promise<TAuthor | null> => {
   try {
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}`, { cache: "no-store" });
 
@@ -33,87 +20,72 @@ const getAuthor = async (email: string): Promise<any> => {
   return null;
 }
 
-const Page = async ({
+const AuthorPage = async ({
   params,
 }: {
   params: { email: string };
 }) => {
-  const session = await getServerSession(authOptions);
-  const sessionEmail = session?.user?.email;
-  const user = params.email;
-  const posts = await getAuthors(user);
-  const author = await getAuthor(user);
+  const email = params.email;
+  const author = await getAuthors(email);
+  const session = await getServerSession(authOptions); 
+  const sessionEmail = session?.user?.email; // Extract session email
 
-  if (!posts || posts.length === 0) {
-    if (sessionEmail === author?.email) {
-      return (
-        <div className="py-6">
-          <Author
-            author={author?.name || "Unknown Author"}
-            authorid={author?.id || "null"}
-            authorimg={author?.image || ""}
-            authorbio={author?.bio || ""}
-            authorEmail={author?.email || ""}
-            date={author?.createdAt || ""}
-            image={author?.imageUrl || ""}
-          />
-          <h2 className="mt-4">You haven't created any posts yet.</h2>
-          <Link href="/create-post">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg bg-green-500 mt-3">
-              Create Post
-            </button>
-          </Link>
-        </div>
-      );
-    } else {
-      return (
-        <div className="py-6">
-          <Author
-            author={author?.name || "Unknown Author"}
-            authorid={author?.id || "null"}
-            authorimg={author?.image || ""}
-            authorbio={author?.bio || ""}
-            authorEmail={author?.email || ""}
-            date={author?.createdAt || ""}
-            image={author?.imageUrl || ""}
-          />
-          <h2 className="mt-4">No posts available.</h2>
-        </div>
-      );
-    }
+  if (!author) {
+    return (
+      <div className="py-6">
+        <h2>Author Not Found</h2>
+      </div>
+    );
   }
+
+  // Extract author posts
+  const posts = author.posts;
 
   return (
     <div>
       <Author
-        author={author?.name || "Unknown Author"}
-        authorid={author?.id || "null"}
-        authorimg={author?.image || ""}
-        authorbio={author?.bio || ""}
-        authorEmail={author?.email || ""}
-        date={author?.createdAt || ""}
-        image={author?.imageUrl || ""}
+        author={author.name}
+        authorimg={author.image}
+        authorid={author.id}
+        authorEmail={author.email}
+        authorbio={author.bio}
       />
 
-      {posts.map((post: TPost) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          author={post.author?.name || "Unknown Author"}
-          authorid={post.author?.id}
-          authorimg={post.author?.image}
-          authorEmail={post.authorEmail}
-          date={post.createdAt}
-          image={post.imageUrl}
-          category={post.catName}
-          title={post.title}
-          content={post.content}
-          links={post.links || []}
-        />
-      ))}
+      <h2 className="text-2xl font-bold mt-10">Posts</h2>
+
+      {posts && posts.length > 0 ? (
+        posts.map((post: TPost) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            author={post.author.name}
+            authorid={post.author.id}
+            authorimg={post.author.image}
+            authorEmail={post.authorEmail}
+            date={post.createdAt}
+            image={post.imageUrl}
+            category={post.catName}
+            title={post.title}
+            content={post.content}
+            links={post.links || []}
+          />
+        ))
+      ) : (
+        <p className="text-lg text-gray-500">No posts available</p>
+      )}
+
+      {sessionEmail === author.email && ( // Corrected conditional statement
+        <>
+        <p className="text-lg text-gray-500">You are viewing your own profile.</p>
+        <Link href={`/edit-profile/${sessionEmail}`}>
+          <div className="text-lg text-white hover:bg-green-600 bg-green-500 py-2 rounded-lg w-fit px-3 mt-2">
+            Create Post
+          </div>
+        </Link>
+        </>
+      )}
     </div>
   );
 };
 
-export default Page;
-
+export default AuthorPage;
