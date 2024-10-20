@@ -5,6 +5,7 @@ import Post from "@/components/Post";
 import Image from "next/image";
 import { TPost } from "./types";
 import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
 
 // Fetch posts API endpoint
 const POSTS_API = `${process.env.NEXTAUTH_URL}/api/posts`;
@@ -26,6 +27,18 @@ const getPosts = async (): Promise<TPost[] | null> => {
     return null;
   }
 };
+
+// const [commentsCount, setCommentsCount] = useState(0);
+
+// useEffect(() => {
+//   const fetchCommentsCount = async () => {
+//     // Fetch commentsCount from API
+//     const response = await fetch(`/api/posts/${id}`);
+//     const data = await response.json();
+//     setCommentsCount(data.commentsCount);
+//   };
+//   fetchCommentsCount();
+// }, [id]);
 
 export default async function Home() {
   const posts = await getPosts();
@@ -57,6 +70,7 @@ export default async function Home() {
           title={post.title}
           content={post.content}
           links={post.links || []}
+          // commentsCount={response.commentsCount}
         />
       ))}
     </>

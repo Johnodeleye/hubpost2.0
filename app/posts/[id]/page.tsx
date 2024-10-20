@@ -9,10 +9,8 @@ const getPost = async (id: string): Promise<TPost | null> => {
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, { cache: "no-store" });
 
     if (res.ok) {
-      const post = await res.json();
-      const commentsRes = await fetch(`${process.env.NEXTAUTH_URL}/api/comments/${id}`);
-      const comments = await commentsRes.json();
-      return { ...post, comments };
+      const data = await res.json();
+      return data;
     }
   } catch (error) {
     console.log(error);
@@ -20,12 +18,11 @@ const getPost = async (id: string): Promise<TPost | null> => {
   return null;
 };
 
-const page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
-  const post = await getPost(id);
+  const response = await getPost(id);
 
-  // Early return if no post
-  if (!post) {
+  if (!response) {
     return (
       <div className="py-6">
         <h2>Post not found</h2>
@@ -33,40 +30,42 @@ const page = async ({ params }: { params: { id: string } }) => {
     );
   }
 
+  const post = response.post;
+
   return (
     <div>
       <MorePost
         key={post.id}
         id={post.id}
-        author={post.author?.name || "Unknown Author"}
-        authorid={post.author?.id}
-        authorimg={post.author?.image}
-        authorEmail={post.authorEmail}
+        author={post.author.name}
+        authorid={post.author.id}
+        authorimg={post.author.image}
+        authorEmail={post.author.email}
         date={post.createdAt}
         image={post.imageUrl}
         category={post.catName}
         title={post.title}
         content={post.content}
-        links={post.links || []}
+        links={post.links}
       />
 
       <CommentForm postId={post.id} />
 
-      {post.comments.map((comment: TComment) => (
-      <Comment
-        key={comment.id}
-        id={comment.id}
-        author={comment.author?.name || "Unknown Author"}
-        authorid={comment.author.id}
-        authorimg={comment.author?.image}
-        authorEmail={comment.authorEmail}
-        date={comment.createdAt}
-        content={comment.content}
-        postId={comment.postId}
-      />
-    ))}
+      {post.comments?.map((comment: TComment) => (
+        <Comment
+          key={comment.id}
+          id={comment.id}
+          author={comment.author.name}
+          authorid={comment.author.id}
+          authorimg={comment.author.image}
+          authorEmail={comment.author.email}
+          date={comment.createdAt}
+          content={comment.content}
+          postId={comment.postId}
+        />
+      ))}
     </div>
   );
 };
 
-export default page;
+export default Page;

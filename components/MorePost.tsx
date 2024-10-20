@@ -7,6 +7,8 @@ import { files } from "@/app/assets/files";
 import Verified from "./Verified";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import LikeButton from "./LikeButton"
+import CommentCount from "./CommentCount"
 
 interface PostProps {
     id: string,
@@ -92,7 +94,7 @@ const MorePost = async ({
             {author}
             </Link>
             </h4>
-            <Verified authorId={authorid} />
+            <Verified authorId={authorid} className=""/>
           {isEditable && (
             <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
               <Link href={`/edit-post/${id}`}>
@@ -156,21 +158,23 @@ Posted {''} {formattedDate} by {''}
     <span className="author-name truncate sm:truncate-none">
       {author} 
     </span>
-    <Verified authorId={authorid} />
+    <Verified authorId={authorid} className=""/>
   </span>
 </span>
 
-    <div className="flex gap-4 mt-4">
-      <button>
-        <Image src={files.heart} alt={'reply'} />
+<div className="flex gap-3 mt-4 ml-3">
+      <div className="">
+        {authorEmail && (
+          <LikeButton id={id} authorEmail={authorEmail}/>
+        )}
+      </div>
+      <Link href={`/posts/${id}#comments`}>
+        <CommentCount id={id} />
+      </Link>
+      <button className="mt-3 mr-5">
+        <Image src={files.share} width={32} height={32} alt={'share'} />
+        <span className="text-sm ml-1">{'2'}</span>
       </button>
-      <button>
-        <Image src={files.comment} alt={'reply'} />
-      </button>
-      <button>
-        <Image src={files.share} alt={'reply'} />
-      </button>
-      
     </div>
   </div>
 )

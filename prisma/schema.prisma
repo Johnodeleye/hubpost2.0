@@ -73,6 +73,7 @@ model Post {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   comments   Comment[]
+  Like Like[]
 }
 
 model Category {
@@ -91,4 +92,13 @@ model Comment {
   authorEmail String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Like {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  postId   String   @db.ObjectId
+  post     Post     @relation(fields: [postId], references: [id])
+  authorEmail String
+
+  @@unique([postId, authorEmail])
 }

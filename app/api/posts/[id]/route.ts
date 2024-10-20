@@ -22,16 +22,38 @@ export async function GET(
         comments: {
           include: {
             author: {
-              select: { name: true, email: true }
+              select: { name: true, email: true, image: true, id: true }
             }
           }
         }
       }
     });
-    return NextResponse.json(post);
+
+    if (!post) {
+      return NextResponse.json({ message: "Post not found" }, { status: 404 });
+    }
+
+    const session = await getServerSession(authOptions);
+    const authorEmail = session?.user?.email;
+
+    const likesCount = await prisma.like.count({ where: { postId: id } });
+    const isLiked = authorEmail
+      ? await prisma.like.findFirst({
+          where: { postId: id, authorEmail },
+        })
+      : null;
+
+    const commentsCount = post.comments.length;
+
+    return NextResponse.json({
+      post,
+      likesCount,
+      isLiked: !!isLiked,
+      commentsCount
+    });
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: "Couldn't fetch post" });
+    console.error("Error fetching post:", error);
+    return NextResponse.json({ message: "Error fetching post" }, { status: 500 });
   }
 }
 
@@ -92,5 +114,40 @@ export async function PUT(
     }
   }
 
+  export async function POST(
+    req: Request,
+    { params }: { params: { id: string } }
+  ) {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user?.email) {
+      return NextResponse.json({ error: "Not authenticated or invalid user data" }, { status: 401 });
+    }
+    
+    const requestBody = await req.json();
+    const id = params.id;
+  
+    // Toggle like logic
+    const like = await prisma.like.findFirst({
+      where: { postId: id, authorEmail: session.user?.email },
+    });
+    if (like) {
+      await prisma.like.delete({ where: { id: like.id } });
+    } else {
+      await prisma.like.create({
+        data: {
+          postId: id,
+          authorEmail: session.user.email,
+        },
+      });
+    }
+    
+    // Recount likes after toggling
+    const likesCount = await prisma.like.count({ where: { postId: id } });
+    const isLiked = await prisma.like.findFirst({
+      where: { postId: id, authorEmail: session.user.email },
+    });
+  
+    return NextResponse.json({ likesCount, isLiked: !!isLiked });
+  }
 
   

@@ -14,6 +14,7 @@ import share from './share.svg';
 import verified from './verified.png';
 import copy from './copy-link-16.png';
 import userinfo from './info-user-color-icon.png'
+import heartFilled from './heart-filled.svg'
 
 export const files = {
     search,
@@ -32,4 +33,5 @@ export const files = {
     verified,
     copy,
     userinfo,
+    heartFilled,
 }

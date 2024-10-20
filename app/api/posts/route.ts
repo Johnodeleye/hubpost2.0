@@ -44,21 +44,33 @@ export async function POST(req: Request) {
       }
     }
 
-export async function GET() {
-  try {
-    const posts = await prisma.post.findMany({
-      include: { author: { select: { name: true, image: true, id: true, email: true } } },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-
-    return NextResponse.json(posts);
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json(
-      { message: "Some error occured" },
-      { status: 500 }
-    );
-  }
-}
+    export async function GET() {
+      try {
+        // Fetch all posts with author data
+        const posts = await prisma.post.findMany({
+          include: { author: { select: { name: true, image: true, id: true, email: true } } },
+        });
+    
+        // Shuffle posts array
+        const shuffledPosts = shuffleArray(posts);
+    
+        // Return shuffled posts
+        return NextResponse.json(shuffledPosts);
+      } catch (error) {
+        console.log(error);
+        return NextResponse.json(
+          { message: "Some error occured" },
+          { status: 500 }
+        );
+      }
+    }
+    
+    // Function to shuffle array
+    function shuffleArray(array: any[]) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+  

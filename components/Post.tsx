@@ -9,6 +9,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import ImageShowcase from "./imageViewer"
 
+import LikeButton from "./LikeButton"
+import CommentCount from "./CommentCount"
+
 interface PostProps {
     id: string,
     author: string,
@@ -22,6 +25,7 @@ interface PostProps {
     content: string,
     links?: string[],
     category?: string
+    // commentsCount: number;
 }
 
 
@@ -71,6 +75,7 @@ const Post = async ({
   const isEditable = session && session?.user?.email === authorEmail;
 
   const formattedDate = formatPostDate(date);
+
 
   return (
     <div className="my-4 border-b border-b-300 py-8">
@@ -174,19 +179,21 @@ Posted {''} {formattedDate} by {''}
   </span>
 </span>
 
-    <div className="flex gap-3 mt-4">
-      <button>
-        <Image src={files.heart} width={28} height={28} alt={'like'} />
-      </button>
+    <div className="flex gap-3 mt-4 ml-3">
+      <div className="">
+        {authorEmail && (
+          <LikeButton id={id} authorEmail={authorEmail}/>
+        )}
+      </div>
       <Link href={`/posts/${id}#comments`}>
-        <button className="mt-2 ml-1">
-          <Image src={files.comment} width={32} height={32} alt={'reply'} />
-        </button>
+        <CommentCount id={id} />
       </Link>
-      <button className="mt-1 mr-5">
+      <button className="mt-3 mr-5">
         <Image src={files.share} width={32} height={32} alt={'share'} />
+        <span className="text-sm ml-1">{'2'}</span>
       </button>
     </div>
+
 
         <Link href={`/posts/${id}#comments`}>
           <p className="text-gray-500 italic mt-3">

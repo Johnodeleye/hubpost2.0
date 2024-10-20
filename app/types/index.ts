@@ -4,6 +4,7 @@ export type TCategory = {
 };
 
 export type TPost = {
+    post: any;
     id: string;
     title: string;
     content: string;
@@ -15,6 +16,7 @@ export type TPost = {
     authorEmail: string;
     comments: TComment[];
     author: {
+        email: string | undefined;
         name: string;
         image: string;
         id: string;
