@@ -1,4 +1,3 @@
-// ImageShowcase.tsx
 'use client';
 
 import Image, { StaticImageData } from 'next/image';
@@ -31,7 +30,9 @@ const ImageShowcase: React.FC<ImageShowcaseProps> = ({ src, alt }) => {
         onClick={handleImageClick}
       />
       {isImageOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+        >
           <Image
             src={src}
             alt="Enlarged Image"

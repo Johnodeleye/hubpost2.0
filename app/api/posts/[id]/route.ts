@@ -22,7 +22,7 @@ export async function GET(
         comments: {
           include: {
             author: {
-              select: { name: true, email: true, image: true, id: true }
+              select: { name: true, email: true }
             }
           }
         }
@@ -45,15 +45,18 @@ export async function GET(
 
     const commentsCount = post.comments.length;
 
+    // Exclude unnecessary data
+    const { comments, ...postData } = post;
+
     return NextResponse.json({
-      post,
+      ...postData,
       likesCount,
-      isLiked: !!isLiked,
+      isLiked: !!isLiked, // Convert to boolean
       commentsCount
     });
   } catch (error) {
-    console.error("Error fetching post:", error);
-    return NextResponse.json({ message: "Error fetching post" }, { status: 500 });
+    console.log(error);
+    return NextResponse.json({ message: "Couldn't fetch post" });
   }
 }
 

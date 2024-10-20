@@ -11,6 +11,8 @@ import ImageShowcase from "./imageViewer"
 
 import LikeButton from "./LikeButton"
 import CommentCount from "./CommentCount"
+import Popup from "./Popup"
+import Share from "./Share"
 
 interface PostProps {
     id: string,
@@ -96,7 +98,7 @@ const Post = async ({
             <Verified authorId={authorid} className=""/>
           {isEditable && (
             <div className="flex gap-7 font-bold py-2 px-4 rounded-md bg-gray-800 w-fit ml-auto">
-              <Link href={`/edit-post/${id}#comments`}>
+              <Link href={`/edit-post/${id}`}>
                 <Image src={files.edit} alt="edit" />
               </Link>
               <DeleteButton id={id}/>
@@ -105,13 +107,7 @@ const Post = async ({
         </div>
       </div>
 
-      <div className="w-full h-72 relative">
-        {/* <Image
-          src={image || offimage}
-          alt={title}
-          className="object-cover rounded-md object-center"
-          fill
-        /> */}
+      <div className="w-full h-72">
           <ImageShowcase src={image ? image : offimage} alt={title}  />
 
       </div>
@@ -188,10 +184,12 @@ Posted {''} {formattedDate} by {''}
       <Link href={`/posts/${id}#comments`}>
         <CommentCount id={id} />
       </Link>
-      <button className="mt-3 mr-5">
-        <Image src={files.share} width={32} height={32} alt={'share'} />
-        <span className="text-sm ml-1">{'2'}</span>
-      </button>
+      <div className="mt-3 mr-5">
+          <Popup id={id}>
+          <Image src={files.share} width={32} height={32} alt={'share'} />
+          <span className="text-sm ml-1">{''}</span>
+        </Popup>
+        </div>
     </div>
 
 

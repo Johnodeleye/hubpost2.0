@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LikeButton from "./LikeButton"
 import CommentCount from "./CommentCount"
+import Popup from "./Popup"
 
 interface PostProps {
     id: string,
@@ -106,7 +107,7 @@ const MorePost = async ({
         </div>
       </div>
 
-      <div className="w-full h-72 relative">
+      <div className="w-full h-72 relative z-50">
         <Image
           src={image || offimage}
           alt={title}
@@ -162,7 +163,7 @@ Posted {''} {formattedDate} by {''}
   </span>
 </span>
 
-<div className="flex gap-3 mt-4 ml-3">
+    <div className="flex gap-3 mt-4 ml-3">
       <div className="">
         {authorEmail && (
           <LikeButton id={id} authorEmail={authorEmail}/>
@@ -171,10 +172,12 @@ Posted {''} {formattedDate} by {''}
       <Link href={`/posts/${id}#comments`}>
         <CommentCount id={id} />
       </Link>
-      <button className="mt-3 mr-5">
-        <Image src={files.share} width={32} height={32} alt={'share'} />
-        <span className="text-sm ml-1">{'2'}</span>
-      </button>
+      <div className="mt-3 mr-5">
+          <Popup id={id}>
+          <Image src={files.share} width={32} height={32} alt={'share'} />
+          <span className="text-sm ml-1">{''}</span>
+        </Popup>
+        </div>
     </div>
   </div>
 )
