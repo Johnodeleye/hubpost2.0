@@ -28,7 +28,7 @@ export default function Share({ url }: ShareProps) {
   return (
     <ShareSocial
       url={url}
-      socialTypes={['facebook', 'twitter', 'linkedin', 'whatsapp', 'linkedin']}
+      socialTypes={['facebook', 'twitter', 'linkedin', 'whatsapp', 'email']}
       style={style}
     />
   );

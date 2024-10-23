@@ -14,8 +14,6 @@ function CopyProfileId({ authorId }: { authorId: string }) {
           console.log('Author ID copied to clipboard');
         }).catch((error) => {
           toast.error('Error copying author ID', {
-            
-
           });
           console.error('Error copying author ID:', error);
         });

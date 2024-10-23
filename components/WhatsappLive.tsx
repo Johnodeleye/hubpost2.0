@@ -40,44 +40,29 @@ const WhatsappLive = () => {
   const handlePopupClick = () => {
     setShowPopup(true);
   };
-  
-  const sendWhatsapp = () => {
-    // Get references to the input elements after they are rendered
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const messageInput = document.getElementById("message");
-  
-    // Check if all elements are found before accessing their values
-    if (nameInput && emailInput && messageInput) {
-      const nameInput = document.getElementById("name") as HTMLInputElement;
-      const messageInput = document.getElementById("message") as HTMLInputElement;
-      const emailInput = document.getElementById("email") as HTMLInputElement;
-      const name = nameInput.value;
-      const email = emailInput.value;
-      const message = messageInput.value;
-  
-      // Build the URL string
-      const url = "https://wa.me/" + "+2348120423106" + "?text="
-        + " *HubPost's Review from* " + name + "%0a"
-        + " My *Name* is " + name + "%0a"
-        + " My *Email* is " + email + "%0a"
-        + " My *Message* goes thus:" + message + "%0a%0a";
-  
-        const newWindow = window.open(url, '_blank');
-        if (newWindow) {
-          newWindow.focus();
-        } else {
-          console.error("Failed to open a new window for WhatsApp");
-        }
-    } else {
-      console.error("Failed to find input elements with the provided IDs");
-    }
-  };
 
-  //   e.preventDefault();
-  //   // Handle form submission here (e.g., send data to server)
-  //   setShowPopup(false);
-  // };
+   const onsubmit = async function handleSubmit(event: any) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "8d4a9798-6b50-4e7e-b2d6-55108dd78b15");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+    });
+    const result = await response.json();
+    if (result.success) {
+        console.log(result);
+    }
+}
 
   return (
     <div className="">
@@ -95,15 +80,16 @@ const WhatsappLive = () => {
             <h3 className="text-base lg:text-lg font-bold text-green-400 md:text-center">Share Your <span className="ml-5 lg:ml-0">Feedback 💯</span></h3>
 
             <button className="text-red-600 font-bold lg:ml-4 tooltip" onClick={() => setShowPopup(false)}>
+
               ❌
             </button>
           </div>
           <p className="text-sm text-ellipsis text-gray-600 mb-4">Help us improve by sharing your feedback about HubPost</p>
-          <form className="flex flex-col gap-2">
+          <form className="flex flex-col gap-2" onSubmit={onsubmit}>
             <code><input required type="text" name="name" className="border rounded-md p-2 bg-dark-4 lg:w-full sm:w-11/12" placeholder="Enter your name" id="name" /></code>
             <code><input required type="email" name="email" className="border rounded-md p-2 bg-dark-4 lg:w-full sm:w-11/12" placeholder="Enter your email" id="email" /></code>
            <code> <textarea required name="message" className="border rounded-md p-2 bg-dark-4 lg:w-full text-ellipsis sm:w-11/12" placeholder="Your message...." id="message"></textarea> </code>
-            <button onClick={sendWhatsapp} type="submit" className="bg-green-400 text-white rounded-md p-2 mt-2 sm:w-11/12">Send {''}{''}➡</button>
+            <button type="submit" className="bg-green-400 text-white rounded-md p-2 mt-2 sm:w-11/12">Send {''}{''}➡</button>
           </form>
         </div>
       )}

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { TPost } from "./types";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 // Fetch posts API endpoint
 const POSTS_API = `${process.env.NEXTAUTH_URL}/api/posts`;
@@ -16,7 +17,6 @@ const getPosts = async (): Promise<TPost[] | null> => {
     const response = await fetch(POSTS_API, {
       cache: "no-store",
     });
-
     if (response.ok) {
       return await response.json();
     } else {
