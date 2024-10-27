@@ -3,7 +3,6 @@ import { TAuthor, TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react"; // Import useSession hook
 import Link from "next/link";
 
 const getAuthors = async (email: string): Promise<TAuthor | null> => {
@@ -27,8 +26,8 @@ const AuthorPage = async ({
 }) => {
   const email = params.email;
   const author = await getAuthors(email);
-  const session = await getServerSession(authOptions); 
-  const sessionEmail = session?.user?.email; // Extract session email
+  const session = await getServerSession(authOptions);
+  const sessionEmail = session?.user?.email;
 
   if (!author) {
     return (
@@ -38,7 +37,6 @@ const AuthorPage = async ({
     );
   }
 
-  // Extract author posts
   const posts = author.posts;
 
   return (
@@ -74,18 +72,20 @@ const AuthorPage = async ({
         <p className="text-lg text-gray-500">No posts available</p>
       )}
 
-      {sessionEmail === author.email && ( // Corrected conditional statement
+      {sessionEmail === author.email && (
         <>
-        <p className="text-lg text-gray-500">You are viewing your own profile.</p>
-        <Link href={`/edit-profile/${sessionEmail}`}>
-          <div className="text-lg text-white hover:bg-green-600 bg-green-500 py-2 rounded-lg w-fit px-3 mt-2">
+          <p className="text-lg text-gray-500">You are viewing your own profile.</p>
+          <Link href={`/edit-profile/${sessionEmail}`}>
+            <div className="text-lg text-white hover:bg-green-600 bg-green-500 py-2 rounded-lg
+
+                      px-3 mt-2">
             Create Post
           </div>
         </Link>
-        </>
-      )}
-    </div>
-  );
+      </>
+    )}
+  </div>
+);
 };
 
 export default AuthorPage;

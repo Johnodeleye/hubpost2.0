@@ -43,16 +43,13 @@ export async function GET(
         })
       : null;
 
-    const commentsCount = post.comments.length;
-
-    // Exclude unnecessary data
     const { comments, ...postData } = post;
 
     return NextResponse.json({
       ...postData,
       likesCount,
-      isLiked: !!isLiked, // Convert to boolean
-      commentsCount
+      isLiked: !!isLiked,
+      commentsCount: post.comments.length
     });
   } catch (error) {
     console.log(error);
@@ -61,96 +58,91 @@ export async function GET(
 }
 
 export async function PUT(
-    req: Request,
-    { params }: { params: { id: string } }
-  ) {
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
 
-    const session = await getServerSession(authOptions);
-
-    if (!session) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401});
-    }
-
-    const { title, content, links, selectedCategory, imageUrl, publicId } =
-      await req.json();
-    const id = params.id;
-  
-    try {
-      const post = await prisma.post.update({
-        where: { id },
-        data: {
-          title,
-          content,
-          links,
-          catName: selectedCategory,
-          imageUrl,
-          publicId,
-        },
-      });
-  
-      return NextResponse.json(post);
-    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: "Error editing post" });
-    }
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401});
   }
 
-  {/**function to delete */}
-  export async function DELETE(
-    req: Request,
-    { params }: { params: { id: string } }
-  ) {
+  const { title, content, links, selectedCategory, imageUrl, publicId } =
+    await req.json();
+  const id = params.id;
 
-    const session = await getServerSession(authOptions);
-
-    if (!session) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401});
-    }
-
-    const id = params.id;
-    try {
-      const post = await prisma.post.delete({ where: { id } });
-      return NextResponse.json(post);
-    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: "Error deleting the post" });
-    }
-  }
-
-  export async function POST(
-    req: Request,
-    { params }: { params: { id: string } }
-  ) {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
-      return NextResponse.json({ error: "Not authenticated or invalid user data" }, { status: 401 });
-    }
-    
-    const requestBody = await req.json();
-    const id = params.id;
-  
-    // Toggle like logic
-    const like = await prisma.like.findFirst({
-      where: { postId: id, authorEmail: session.user?.email },
+  try {
+    const post = await prisma.post.update({
+      where: { id },
+      data: {
+        title,
+        content,
+        links,
+        catName: selectedCategory,
+        imageUrl,
+        publicId
+      }
     });
-    if (like) {
-      await prisma.like.delete({ where: { id: like.id } });
-    } else {
-      await prisma.like.create({
-        data: {
-          postId: id,
-          authorEmail: session.user.email,
-        },
-      });
-    }
-    
-    // Recount likes after toggling
-    const likesCount = await prisma.like.count({ where: { postId: id } });
-    const isLiked = await prisma.like.findFirst({
-      where: { postId: id, authorEmail: session.user.email },
-    });
-  
-    return NextResponse.json({ likesCount, isLiked: !!isLiked });
+
+    return NextResponse.json(post);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Error editing post" });
   }
+}
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401});
+  }
+
+  const id = params.id;
+  try {
+    const post = await prisma.post.delete({ where: { id } });
+    return NextResponse.json(post);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Error deleting the post" });
+  }
+}
+
+export async function POST(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user?.email) {
+    return NextResponse.json({ error: "Not authenticated or invalid user data" }, { status: 401 });
+  }
+
+  const requestBody = await req.json();
+  const id = params.id;
+
+  const like = await prisma.like.findFirst({
+    where: { postId: id, authorEmail: session.user?.email },
+  });
+  if (like) {
+    await prisma.like.delete({ where: { id: like.id } });
+  } else {
+    await prisma.like.create({
+      data: {
+        postId: id,
+        authorEmail: session.user.email
+      }
+    });
+  }
+
+  const likesCount = await prisma.like.count({ where: { postId: id } });
+  const isLiked = await prisma.like.findFirst({
+    where: { postId: id, authorEmail: session.user.email },
+  });
+
+  return NextResponse.json({ likesCount, isLiked: !!isLiked });
+}
 
   
