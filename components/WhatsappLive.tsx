@@ -2,6 +2,7 @@
 import Image from "next/image";
 import whatsapp from '@/app/assets/whatsapp.png';
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 const WhatsappLive = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -49,7 +50,6 @@ const WhatsappLive = () => {
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
-
     const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -60,8 +60,22 @@ const WhatsappLive = () => {
     });
     const result = await response.json();
     if (result.success) {
-        console.log(result);
+      Swal.fire({
+        title: "Success!",
+        text: "Thank you for your message, we'll get back to you😎",
+        icon: "success"
+      });
+      sendEmail();
     }
+}
+
+const sendEmail = async() => {
+const res = await fetch("/api/send", {
+  method: "POST",
+  body: JSON.stringify({
+    
+  })
+});
 }
 
   return (

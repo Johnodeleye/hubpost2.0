@@ -8,17 +8,19 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import  '@/app/globals.css';
 import logo from '@/app/assets/Logo White.png';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
+
 const navigation = [
   { name: 'Learn More', href: '/LearnMore' },
-  { name: 'FAQ', href: '/faq' },
-  { name: 'Founder', href: 'https://thefuturefounder.onrender.com' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Support', href: '/faq' },
+  { name: 'Blog', href: '/authors/info' },
+  { name: 'Contact', href: 'https://thefuturefounder.onrender.com#contact' },
   { name: 'Join Community', href: 'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B' },
 ]
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  const { data: session } = useSession();
   return (
     <div >
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
@@ -79,6 +81,8 @@ export default function Example() {
                     </a>
                   ))}
                 </div>
+
+                {!session?.user ? (
                 <div className="py-6">
                 <a
                     href="/sign-up"
@@ -94,51 +98,13 @@ export default function Example() {
                     Log in
                   </a>
                 </div>
+                ):(
+                  <p className='italic text-gray-400 pt-6'>You're currently signed in as {session?.user?.name ||'null'}</p>
+                )}
               </div>
             </div>
           </Dialog.Panel>
         </Dialog>
-  
-      
-      {/* footer */}
-      
-{/* //       <footer className="p-5 text-left text-white bg-gray-800">
-//   <p className=" md:mt-0 copy">&copy; 2024 HubPost. All rights reserved.</p>
-//   <ul className="flex justify-center mb-4">
-//     <li className="mr-4">
-//       <a href="#" className="text-green-400 hover:text-gray-400">
-//         Terms and Conditions
-//       </a>
-//     </li>
-//     <li className="mr-4">
-//       <a href="#" className="text-green-400 hover:text-gray-400">
-//         Privacy Policy
-//       </a>
-//     </li>
-//     <li>
-//       <a href="#" className="text-green-400 hover:text-gray-400">
-//         Contact Us
-//       </a>
-//     </li>
-//   </ul>
-//   <div className="flex justify-center mb-4">
-//     <a href="#" className="mr-4 text-white hover:text-gray-400">
-//       <img src="logo white.png" alt="HubPost logo" className="w-auto h-6 mx-auto"/>
-//     </a>
-//     <a href="#" className="mr-4 text-white hover:text-green-400">
-//       <FaTwitter size="24" />
-//     </a>
-//     <a href="#" className="mr-4 text-white hover:text-green-400">
-//       <FaFacebook size="24" />
-//     </a>
-//     <a href="#" className="mr-4 text-white hover:text-green-400">
-//       <FaLinkedin size="24" />
-//     </a>
-//     <a href="#" className="text-white hover:text-green-400">
-//       <FaInstagram size="24" />
-//     </a>
-//   </div>
-// </footer> */}
       
     </div>
   )

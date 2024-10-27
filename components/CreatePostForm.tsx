@@ -101,6 +101,7 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
         if (res.ok) {
           toast.success('Post Created Successfully!');
           router.push("/dashboard");
+          router.refresh();
         } else {
           toast.error('Something went wrong, Please try again later');
         }

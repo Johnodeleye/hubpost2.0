@@ -4,7 +4,7 @@ function RightSidebar() {
     const quicks = [
         {
             title: 'Learn More',
-            link: '/Learn More',
+            link: '/LearnMore',
         },
         {
             title: 'Join Community',
@@ -15,7 +15,7 @@ function RightSidebar() {
             link: '/authors/info.futurehub1@gmail.com'
         },
         {
-            title: 'FAQ',
+            title: 'Support',
             link: 'http://www.'
         },
     ]

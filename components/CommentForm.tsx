@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface CommentFormProps {
   postId: string;
@@ -13,6 +14,7 @@ interface CommentFormProps {
 const CommentForm: React.FC<CommentFormProps> =  ({ postId }) => {
   const [commentContent, setCommentContent] = useState('');
   const { data: session, status } = useSession(); // Get session
+  const router = useRouter();
 
   const handleCommentSubmit = async (e: any) => {
     e.preventDefault();
@@ -40,6 +42,7 @@ const CommentForm: React.FC<CommentFormProps> =  ({ postId }) => {
       toast.dismiss(); // Dismiss toast notification)
       const newComment = await response.json();
       toast.success('Comment created');
+      router.refresh()
       setCommentContent('');
     } catch (error) {
       console.error(error);

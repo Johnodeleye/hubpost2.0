@@ -4,12 +4,14 @@ import { files } from "@/app/assets/files"
 import Alert from './alert';
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface DeleteButtonProps {
   id: string;
 }
 
 export default function DeleteButton({ id }: DeleteButtonProps) {
+  const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const deleteImage = async(publicId: string)=>{
@@ -34,10 +36,11 @@ export default function DeleteButton({ id }: DeleteButtonProps) {
         toast.dismiss(); // Dismiss loading toast
 
         if (res.ok) {
-          toast.success("Post Deleted");
           const post = await res.json();
           const {publicId} = post;
           await deleteImage(publicId);
+          toast.success("Post Deleted");
+          router.refresh();
         }
       } catch (error) {
         toast.error('Failed to delete post');

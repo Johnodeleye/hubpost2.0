@@ -24,7 +24,7 @@ const Footer = () => {
     </li>
   </ul>
   <div className="flex justify-center mb-9 mr-5">
-    <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="mr-4 text-white hover:text-gray-400">
+    <a href="/" className="mr-4 text-white hover:text-gray-400">
       <Image src={logo}   className="w-auto h-8 mr-2"   alt='hubpost'   />
     </a>
     <a href="#" className="mr-4 text-white hover:text-green-400">
@@ -36,10 +36,10 @@ const Footer = () => {
     <a href="#" className="mr-4 text-white hover:text-green-400">
       <FaLinkedin className="w-6 h-8" />
     </a>
-    <a href="#" className="mr-4 text-white hover:text-green-400">
+    <a href="instagram.com/@perspicacious.dev" className="mr-4 text-white hover:text-green-400">
       <FaInstagram className="w-6 h-8" />
     </a>
-    <a href="#" className="text-white hover:text-green-400">
+    <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="text-white hover:text-green-400">
       <FaWhatsapp className="w-6 h-8" />
     </a>
   </div>
