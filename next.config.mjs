@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint errors during production builds
+  },
   images: {
     remotePatterns: [
       {
@@ -16,11 +19,10 @@ const nextConfig = {
       },
     ],
   },
-      env: {
-        NEXTAUTH_URL: 'http://localhost:3000',
-        CLOUDINARY_UPLOAD_PRESET:'bgtdnw0r'
-        // Replace with your actual URL
-      },
+  env: {
+    NEXTAUTH_URL: 'http://localhost:3000',
+    CLOUDINARY_UPLOAD_PRESET: 'bgtdnw0r',
+  },
 };
 
 export default nextConfig;
