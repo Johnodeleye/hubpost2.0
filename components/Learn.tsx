@@ -23,9 +23,9 @@ export default function LearnMore() {
           </a>
         </div>
         <div className="mobile-note text-sm text-gray-400 text-center mt-2">
-          <marquee behavior="scroll" direction="left">
+          <p>
             Note: Download is exclusively for mobile devices.
-          </marquee>
+          </p>
         </div>
       </section>
 
