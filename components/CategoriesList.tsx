@@ -66,7 +66,7 @@ export default function CategoriesList() {
   <div className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-50 flex items-center justify-center md:relative md:bg-transparent md:opacity-100">
     <div className="bg-dark md:bg-transparent max-w-5xl mx-auto p-4 lg:p-6 xl:p-8 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 overflow-y-auto md:overflow-y-hidden h-screen md:h-auto">
       {categories.map((category) => (
-        <div key={category.id} className="bg-white rounded-xl shadow-md p-4 text-center md:w-full lg:w-full xl:w-full">
+        <div key={category.id} className="bg-dark-4 rounded-xl shadow-md p-4 text-center md:w-full lg:w-full xl:w-full">
           <Link
             className="text-green-400 text-base-semibold hover:bg-white block w-full px-3 py-2"
             href={`/categories/${category.catName}`}
