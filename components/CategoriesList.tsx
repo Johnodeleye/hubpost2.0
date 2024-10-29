@@ -63,33 +63,29 @@ export default function CategoriesList() {
         )}
       </div>
       {showMore && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-50">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-dark p-9 rounded shadow shadow-green-400 px-9 py-10 pb-20 pt-8 whitespace-nowrap lg:px-20 lg:py-15">
-            <h1 className="text-heading4-medium mb-2 text-center text-white bg-green-600 rounded-md font-bold">
-              All Categories
-            </h1>
-            <ul className="list-none">
-              {categories.map((category) => (
-                <li key={category.id}>
-                  <Link
-                    className="text-green-400 text-base-semibold hover:bg-white rounded-xl px-3"
-                    href={`/categories/${category.catName}`}
-                  >
-                    {category.catName}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="italic font-bold text-gray-500">These Categories are Based on Feedbacks we got from our users, pls kindly click the whatsapp icon below if you have any feedback</p>
-            <button
-              className='absolute top-right mt-4 mr-2 hover:bg-green-600 rounded-xl px-4 py-2 text-white border border-green-400'
-              onClick={handleShowMore}
-            >
-              Close
-            </button>
-          </div>
+  <div className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-50 flex items-center justify-center md:relative md:bg-transparent md:opacity-100">
+    <div className="bg-dark md:bg-transparent max-w-5xl mx-auto p-4 lg:p-6 xl:p-8 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 overflow-y-auto md:overflow-y-hidden h-screen md:h-auto">
+      {categories.map((category) => (
+        <div key={category.id} className="bg-white rounded-xl shadow-md p-4 text-center md:w-full lg:w-full xl:w-full">
+          <Link
+            className="text-green-400 text-base-semibold hover:bg-white block w-full px-3 py-2"
+            href={`/categories/${category.catName}`}
+          >
+            {category.catName}
+          </Link>
         </div>
-      )}
+      ))}
+      <div className="bg-white rounded-xl shadow-md p-4 text-center md:hidden">
+        <button
+          className="text-red-400 text-base-semibold hover:bg-white block w-full px-3 py-2"
+          onClick={handleShowMore}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }

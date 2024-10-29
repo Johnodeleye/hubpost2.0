@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 
 const navigation = [
   { name: 'Learn More', href: '/learnmore' },
+  { name: 'FAQ', href: '/learnmore#faq' },
   { name: 'Support', href: '/faq' },
   { name: 'Blog', href: '/authors/info.futurehub1@gmail.com' },
   { name: 'Download App (For Mobile)', href: '/learnmore#download' },

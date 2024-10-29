@@ -64,7 +64,7 @@ export default function LearnMore() {
       </section>
 
       {/* FAQ Section */}
-      <section className="faq py-16 bg-gray-800">
+      <section className="faq py-16 bg-gray-800" id='faq'>
         <h2 className="text-2xl font-bold text-center text-green-400">Frequently Asked Questions </h2>
         <Accordion type="single" collapsible className="lg:px-10 md:px-10 px-5">
           <AccordionItem value="item-1">

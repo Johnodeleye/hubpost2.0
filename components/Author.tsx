@@ -17,11 +17,7 @@ interface PostProps {
     authorbio?: string,
 }
 
-//List of Verified User
-const verifiedUserIds = ['66ef45f5a6138e4340dbe9f6',
-  '66f6a351bc2ce8c99e4fa4bb',
-  '',
- ];
+
 
  function formatPostDate(date: string | number) {
   const dateObject = new Date(date as string);

@@ -75,13 +75,13 @@ const AuthorPage = async ({
       {sessionEmail === author.email && (
         <>
           <p className="text-lg text-gray-500">You are viewing your own profile.</p>
-          <Link href={`/edit-profile/${sessionEmail}`}>
+          {/* <Link href={`/edit-profile/${sessionEmail}`}>
             <div className="text-lg text-white hover:bg-green-600 bg-green-500 py-2 rounded-lg
 
-                      px-3 mt-2">
+            px-3 mt-2">
             Create Post
           </div>
-        </Link>
+        </Link> */}
       </>
     )}
   </div>
