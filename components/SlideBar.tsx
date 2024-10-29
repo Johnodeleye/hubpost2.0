@@ -1,7 +1,5 @@
 'use client'
 import React from 'react'
-import Head from 'next/head';
-import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -11,14 +9,14 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
 const navigation = [
-  { name: 'Learn More', href: '/LearnMore' },
+  { name: 'Learn More', href: '/learnmore' },
   { name: 'Support', href: '/faq' },
-  { name: 'Blog', href: '/authors/info' },
-  { name: 'Contact', href: 'https://thefuturefounder.onrender.com#contact' },
+  { name: 'Blog', href: '/authors/info.futurehub1@gmail.com' },
+  { name: 'Download App (For Mobile)', href: '/learnmore#download' },
   { name: 'Join Community', href: 'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B' },
 ]
 
-export default function Example() {
+export default function Slide() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { data: session } = useSession();
   return (
@@ -51,7 +49,7 @@ export default function Example() {
           <div className="fixed inset-0 z-50" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full px-6 py-6 overflow-y-auto bg-[#1F2937] sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only"> HubPost </span>
                 <Image
                 src={logo}

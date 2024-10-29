@@ -27,6 +27,7 @@ function Bottombar() {
                         <Image
                             src={link.imgURL}
                             alt={link.label}
+                            key={link.label}
                             width={24}
                             height={24} />
 

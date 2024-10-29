@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { files } from '@/app/assets/files';
 import { signOut, useSession } from 'next-auth/react';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import SlideBar from './SlideBar';
 
 function LeftSidebar() {
     const { data: session } = useSession();
@@ -51,6 +52,11 @@ function LeftSidebar() {
                         </div>
                     </Link>
             </div>
+
+            <div className="px-5 mt-0 lg:hidden">
+            <SlideBar/>
+            </div>
+
             {session?.user ? (
                         <div className="px-6 mt-10">
                         <button>

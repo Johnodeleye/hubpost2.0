@@ -11,10 +11,15 @@ export const sidebarLinks = [
       route: "/search",
       label: "Search",
     },
-    {
-      imgURL: files.heart,
-      route: "/activity",
-      label: "Activity",
+    // {
+    //   imgURL: files.heart,
+    //   route: "/activity",
+    //   label: "Activity",
+    // },
+        {
+      imgURL: files.group,
+      route: "https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B",
+      label: "Communities",
     },
     {
       imgURL: files.create,

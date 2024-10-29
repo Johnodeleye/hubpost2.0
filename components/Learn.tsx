@@ -8,7 +8,7 @@ export default function LearnMore() {
   return (
     <div className="bg-gray-900 text-white">
       {/* Hero Section */}
-      <section className="hero py-16 bg-gray-800 flex flex-col items-center">
+      <section className="hero py-16 bg-gray-800 flex flex-col items-center" id='download'>
         <h1 className="text-4xl font-bold text-center text-green-400">Learn More About HubPost</h1>
         <p className="text-lg text-center mt-4 font-bold italic">Spark🔥, Connect👨‍💻, Ignite🧨!</p>
         <Image src={files.logo} alt="HubPost Logo" className="w-32 mx-auto mt-8" />
@@ -135,7 +135,7 @@ export default function LearnMore() {
           <AccordionItem value="item-8">
       <AccordionTrigger>Where can I find HubPost Release Notes?</AccordionTrigger>
       <AccordionContent>
-        You can find the latest HubPost release notes <Link href={'/release'} className='text-green-400 font-bold '>Here</Link>
+        You can find the latest HubPost release notes <Link href={'#release'} className='text-green-400 font-bold '>Here</Link>
       </AccordionContent>
     </AccordionItem>
           <AccordionItem value="item-9">
@@ -191,12 +191,12 @@ export default function LearnMore() {
   </div>
 
   <p className="text-green-400 text-left ml-5 px-4 mt-5 py-1 italic font-bold">
-    **Founded by <Link href={'/authors/johnayomide920@gmail.com'}>Odeleye John</Link>, a visionary leader and tech entrepreneur passionate about empowering individuals and fostering a thriving tech community.**
+    **Founded by <Link href={'/authors/johnayomide920@gmail.com'} className='underline'>Odeleye John</Link>, young visionary leader and tech entrepreneur passionate about empowering individuals and fostering a thriving tech community.**
   </p>
 </section>
 
       {/* Release Notes Section */}
-      <section className="release-notes py-10 bg-gray-800">
+      <section className="release-notes py-10 bg-gray-800" id='release'>
         <h2 className="text-2xl font-bold text-center text-green-400">HubPost Release Notes</h2>
         <p className="text-gray-300 ml-2 px-4 text-center">
           Stay up-to-date on the latest features and improvements to HubPost. View the release notes for:
@@ -219,7 +219,7 @@ export default function LearnMore() {
         <p className="text-lg text-center text-gray-300 mt-2 font-bold italic">Join HubPost channel to get exclusive, fastest and latest updates about HubPost...</p>
         <p className='text-lg text-center text-green-400 mt-4 font-bold italic'>Let's Bring the Purpose to Life, Be part of the success story, Be part of something great.</p>
         <p className='text-lg text-center text-green-400 mt-2 font-bold italic cursor-pointer'>
-          <Link href={'/authors/johnayomide920@gmail.com'}>~Odeleye John | Founder @ HubPost</Link>
+          <Link href={'/authors/johnayomide920@gmail.com'} className='underline'>~Odeleye John | Founder @ HubPost</Link>
         </p>
         <div className="flex justify-center mt-8">
           <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">

@@ -4,7 +4,7 @@ function RightSidebar() {
     const quicks = [
         {
             title: 'Learn More',
-            link: '/LearnMore',
+            link: '/learnmore',
         },
         {
             title: 'Join Community',
