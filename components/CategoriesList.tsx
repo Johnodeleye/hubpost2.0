@@ -80,6 +80,7 @@ export default function CategoriesList() {
                 </li>
               ))}
             </ul>
+            <p className="italic font-bold text-gray-500">These Categories are Based on Feedbacks we got from our users, pls kindly click the whatsapp icon below if you have any feedback</p>
             <button
               className='absolute top-right mt-4 mr-2 hover:bg-green-600 rounded-xl px-4 py-2 text-white border border-green-400'
               onClick={handleShowMore}
