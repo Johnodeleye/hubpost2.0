@@ -1,4 +1,4 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import authOptions from '@/lib/auth';
 import { TAuthor, TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";

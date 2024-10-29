@@ -1,9 +1,7 @@
 // components/CommentForm.jsx
 'use client';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 

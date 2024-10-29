@@ -1,6 +1,6 @@
 import EditProfileForm from "@/components/EditProfileForm";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import authOptions from '@/lib/auth';
 import { redirect } from "next/navigation";
 
 const getAuthor = async (email: string): Promise<any | null> => {

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { files } from '@/app/assets/files';
 import { signOut, useSession } from 'next-auth/react';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import authOptions from '@/lib/auth';
 import SlideBar from './SlideBar';
 
 function LeftSidebar() {

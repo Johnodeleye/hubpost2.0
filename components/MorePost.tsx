@@ -6,7 +6,7 @@ import DeleteButton from "./DeleteButton"
 import { files } from "@/app/assets/files";
 import Verified from "./Verified";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import authOptions from '@/lib/auth';
 import LikeButton from "./LikeButton"
 import CommentCount from "./CommentCount"
 import Popup from "./Popup"
