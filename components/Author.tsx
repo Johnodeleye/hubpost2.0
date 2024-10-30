@@ -8,6 +8,7 @@ import Verified from "./Verified";
 import { getServerSession } from "next-auth";
 import authOptions from '@/lib/auth';
 import CopyProfileId from "@/components/CopyProfile"
+import CopyProfileLink from "./CopyProfileLink"
 
 interface PostProps {
     author: string,
@@ -90,6 +91,7 @@ const Page = async ({
           <p className='max-w-lg mt-2 text-base-regular text-light-2'>Profile ID: <span className="text-green-400 font-bold">{authorid}</span>
           </p>
           <CopyProfileId authorId={authorid} />
+          <CopyProfileLink authorId={authorid} authorEmail={authorEmail} />
         </div>
 
               <div className='mt-4  bg-dark-3'>
