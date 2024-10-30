@@ -3,6 +3,11 @@ import EditPostForm from "@/components/EditPostForm";
 import { getServerSession } from "next-auth/next";
 import authOptions from '@/lib/auth';
 import { redirect } from "next/navigation";
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Edit Post',
+};
 
 const getPost = async (id: string): Promise<TPost | null> => {
   try {

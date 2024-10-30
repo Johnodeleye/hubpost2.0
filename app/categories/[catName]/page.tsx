@@ -1,25 +1,52 @@
+import { files } from "@/app/assets/files";
 import { TPost } from "@/app/types";
 import Post from "@/components/Post";
+import { Metadata } from 'next';
 
-const getPosts = async(catName: string): Promise<TPost[]|null> =>{
-    try {
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories/${catName}`, {cache:"no-store"});
+const getPosts = async (catName: string): Promise<TPost[] | null> => {
+  try {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories/${catName}`, { cache: "no-store" });
 
-        if (res.ok){
-            const categories = await res.json();
-            const posts = categories.posts;
-            return posts;
-        }
-    } catch (error) {
-        console.log(error);
-        
+    if (res.ok) {
+      const categories = await res.json();
+      const posts = categories.posts;
+      return posts;
     }
-    return null;
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
 }
-const page = async ({
-    params,
+
+export async function generateMetadata({
+  params,
 }: {
-    params: {catName: string };
+  params: { catName: string };
+}): Promise<Metadata> {
+  const category = params.catName;
+  const posts = await getPosts(category);
+
+  return {
+    title: `Category: ${decodeURIComponent(category)}`,
+    description: `Explore posts from the ${decodeURIComponent(category)} category.`,
+    openGraph: {
+      type: 'website',
+      images: [
+        {
+          url: `${files.verified}`, // Default image
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary',
+    },
+  };
+}
+
+const page = async ({
+  params,
+}: {
+  params: { catName: string };
 }) => {
     const category = params.catName
     const posts = await getPosts(category);
@@ -28,7 +55,7 @@ const page = async ({
   if (!posts || posts.length === 0) {
     return (
       <div className="py-6">
-        <h2>No Posts</h2>
+        <h2>No Posts from this Category</h2>
       </div>
     );
   }

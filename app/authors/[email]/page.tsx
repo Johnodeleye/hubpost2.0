@@ -3,7 +3,7 @@ import { TAuthor, TPost } from "@/app/types";
 import Author from "@/components/Author";
 import Post from "@/components/Post";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
+import { Metadata } from 'next';
 
 const getAuthors = async (email: string): Promise<TAuthor | null> => {
   try {
@@ -17,6 +17,31 @@ const getAuthors = async (email: string): Promise<TAuthor | null> => {
     console.log(error);
   }
   return null;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { email: string };
+}): Promise<Metadata> {
+  const email = params.email;
+  const author = await getAuthors(email);
+
+  return {
+    title: author?.name || 'Author Not Found',
+    description: author?.bio || 'Author profile',
+    openGraph: {
+      type: 'profile',
+      images: [
+        {
+          url: `${author?.image}` || 'No image available',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary',
+    },
+  };
 }
 
 const AuthorPage = async ({
@@ -75,13 +100,6 @@ const AuthorPage = async ({
       {sessionEmail === author.email && (
         <>
           <p className="text-lg text-gray-500">You are viewing your own profile.</p>
-          {/* <Link href={`/edit-profile/${sessionEmail}`}>
-            <div className="text-lg text-white hover:bg-green-600 bg-green-500 py-2 rounded-lg
-
-            px-3 mt-2">
-            Create Post
-          </div>
-        </Link> */}
       </>
     )}
   </div>

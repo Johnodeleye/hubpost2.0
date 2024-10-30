@@ -3,6 +3,12 @@ import { getServerSession } from "next-auth/next";
 import authOptions from '@/lib/auth';
 import { redirect } from "next/navigation";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Edit Profile',
+};
+
 const getAuthor = async (email: string): Promise<any | null> => {
   try {
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/authors/${email}`);
