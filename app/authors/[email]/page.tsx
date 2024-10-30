@@ -28,7 +28,7 @@ export async function generateMetadata({
   const author = await getAuthors(email);
 
   return {
-    title: author?.name || 'Author Not Found',
+    title: `${author?.name} (${author?.email}) - HubPost` || 'Author Not Found',
     description: author?.bio || 'Author profile',
     openGraph: {
       type: 'profile',

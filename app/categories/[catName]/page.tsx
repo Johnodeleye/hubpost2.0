@@ -33,7 +33,7 @@ export async function generateMetadata({
       type: 'website',
       images: [
         {
-          url: `${files.verified}`, // Default image
+          url: `${files.verified}` || 'No image available', // Default image
         },
       ],
     },

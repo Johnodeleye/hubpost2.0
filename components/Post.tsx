@@ -113,7 +113,10 @@ const Post = async ({
       </div>
 
       {category && (
-        <Link className="bg-green-500 w-fit text-white px-4 py-0.5 text-sm font-bold rounded-md mt-4 block" href={`categories/${category}`}>
+        <Link 
+          className="bg-green-500 w-fit text-white px-4 py-0.5 text-sm font-bold rounded-md mt-4 block" 
+          href={`${process.env.NEXTAUTH_URL}/categories/${category}`}
+        >
           {category}
         </Link>
       )}
