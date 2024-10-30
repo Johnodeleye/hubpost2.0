@@ -30,7 +30,19 @@ export async function generateMetadata({
 
   return {
     title: post?.title || 'Post not found',
-    description: post?.content|| 'Post description not available',
+    description: post?.content || 'Post description not available',
+    openGraph: {
+      images: [
+        {
+          url: post?.imageUrl || 'No images', // Relative or absolute URL
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
   };
 }
 
