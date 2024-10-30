@@ -4,7 +4,7 @@ import { files } from "@/app/assets/files";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-function CopyProfileLink({ authorId, authorEmail }: { authorId: string, authorEmail: string }) {
+function CopyProfileLink({ authorId, authorEmail }: { authorId: string, authorEmail?: string }) {
   const profileLink = `${process.env.NEXTAUTH_URL}/authors/${authorEmail}`;
   const handleCopyProfileLink = (link: string) => {
     navigator.clipboard.writeText(link).then(() => {
