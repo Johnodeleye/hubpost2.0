@@ -1,12 +1,12 @@
-import Bottombar from "@/components/Bottombar";
 import CategoriesList from "@/components/CategoriesList";
-import LeftSidebar from "@/components/Leftbar";
 import Post from "@/components/Post";
-import Image from "next/image";
 import { TPost } from "./types";
-import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'HubPost | Home',
+};
 
 // Fetch posts API endpoint
 const POSTS_API = `${process.env.NEXTAUTH_URL}/api/posts`;
@@ -28,17 +28,7 @@ const getPosts = async (): Promise<TPost[] | null> => {
   }
 };
 
-// const [commentsCount, setCommentsCount] = useState(0);
 
-// useEffect(() => {
-//   const fetchCommentsCount = async () => {
-//     // Fetch commentsCount from API
-//     const response = await fetch(`/api/posts/${id}`);
-//     const data = await response.json();
-//     setCommentsCount(data.commentsCount);
-//   };
-//   fetchCommentsCount();
-// }, [id]);
 
 export default async function Home() {
   const posts = await getPosts();

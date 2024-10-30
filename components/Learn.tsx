@@ -102,6 +102,24 @@ export default function LearnMore() {
               </ul>
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="item-10">
+            <AccordionTrigger>Can i use HubPost as my personal blog on my website?</AccordionTrigger>
+            <AccordionContent>
+              Yes, you can easily integrate HubPost into your website.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-11">
+            <AccordionTrigger>How to integrate HubPost into my website</AccordionTrigger>
+            <AccordionContent>
+              Follow these steps:
+              <ul>
+                <li>Copy the link <mark>https://hubpost-app.vercel.app/authors/[your-email]</mark></li>
+                <li>Replace <mark>(your email)</mark> with your actual email address.</li>
+                <li>Create a Blog section in your website's Navbar.</li>
+                <li>Paste the customized link as the destination URL or show this instructions to your developer, if you don't understand</li>
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
           <AccordionItem value="item-5">
             <AccordionTrigger>How can I get help?</AccordionTrigger>
             <AccordionContent>
@@ -136,6 +154,12 @@ export default function LearnMore() {
       <AccordionTrigger>Where can I find HubPost Release Notes?</AccordionTrigger>
       <AccordionContent>
         You can find the latest HubPost release notes <Link href={'#release'} className='text-green-400 font-bold '>Here</Link>
+      </AccordionContent>
+    </AccordionItem>
+          <AccordionItem value="item-12">
+      <AccordionTrigger>How can i leave my Reviews / Feedback</AccordionTrigger>
+      <AccordionContent>
+        You can leave your feedbacks or reviews, by clicking on the whatsapp icon at the edge of the screen below
       </AccordionContent>
     </AccordionItem>
           <AccordionItem value="item-9">

@@ -1,8 +1,8 @@
 import { TPost, TComment } from "@/app/types";
 import Comment from "@/components/Comment";
 import CommentForm from "@/components/CommentForm";
-import Footer from "@/components/Footer";
 import MorePost from "@/components/MorePost";
+import { Metadata } from 'next';
 
 const getPost = async (id: string): Promise<TPost | null> => {
   try {
@@ -20,6 +20,20 @@ const getPost = async (id: string): Promise<TPost | null> => {
   return null;
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const id = params.id;
+  const post = await getPost(id);
+
+  return {
+    title: post?.title || 'Post not found',
+    description: post?.content|| 'Post description not available',
+  };
+}
+
 const page = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
   const post = await getPost(id);
@@ -32,6 +46,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
     );
   }
+
 
   return (
     <div>
@@ -53,18 +68,18 @@ const page = async ({ params }: { params: { id: string } }) => {
       <CommentForm postId={post.id} />
 
       {post.comments.map((comment: TComment) => (
-      <Comment
-        key={comment.id}
-        id={comment.id}
-        author={comment.author?.name || "Unknown Author"}
-        authorid={comment.author.id}
-        authorimg={comment.author?.image}
-        authorEmail={comment.authorEmail}
-        date={comment.createdAt}
-        content={comment.content}
-        postId={comment.postId}
-      />
-    ))}
+        <Comment
+          key={comment.id}
+          id={comment.id}
+          author={comment.author?.name || "Unknown Author"}
+          authorid={comment.author.id}
+          authorimg={comment.author?.image}
+          authorEmail={comment.authorEmail}
+          date={comment.createdAt}
+          content={comment.content}
+          postId={comment.postId}
+        />
+      ))}
     </div>
   );
 };

@@ -3,23 +3,16 @@ import { getServerSession } from "next-auth";
 import authOptions from '@/lib/auth';
 import { redirect } from "next/navigation";
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Sign in | HubPost',
+};
+
 const Page = async () => {
   const session = await getServerSession(authOptions);
 
-  // const sendEmail = async () => {
-  //   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/send`, {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       // Email content
-  //     })
-  //   });
-  // };
-
   if (session) {
-    // await sendEmail(); // Ensure email sending completes before redirect
     return redirect("/dashboard");
   }
 

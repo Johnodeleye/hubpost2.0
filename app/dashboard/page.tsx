@@ -3,8 +3,15 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import authOptions from '@/lib/auth';
 import { redirect } from "next/navigation";
-import { TPost } from "../types";
+import { TAuthor, TPost } from "../types";
 import Verified from "@/components/Verified";
+
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'HubPost | Dashboard',
+};
+
 
 const getPosts = async (email: string) => {
   try {
@@ -16,7 +23,7 @@ const getPosts = async (email: string) => {
   }
 };
 
-const DashboardPage = async ({}) => {
+const DashboardPage = async () => {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
   let posts = [];
@@ -28,8 +35,6 @@ const DashboardPage = async ({}) => {
   if (email) {
     posts = await getPosts(email);
   }
-
-  const verifiedUserIds = ['66ef45f5a6138e4340dbe9f6', '66ef46f5a6138e4340dbe9fa'];
 
   const sessionEmail = session?.user?.email;
 
