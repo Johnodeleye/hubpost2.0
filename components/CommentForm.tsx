@@ -23,7 +23,7 @@ const CommentForm: React.FC<CommentFormProps> =  ({ postId }) => {
     }
 
     if (!commentContent) {
-      const errorMessage = 'Title and Content must be provided';
+      const errorMessage = 'Content must be provided';
       toast.error(errorMessage);
       return;
     }

@@ -10,6 +10,7 @@ import authOptions from '@/lib/auth';
 import LikeButton from "./LikeButton"
 import CommentCount from "./CommentCount"
 import Popup from "./Popup"
+import ImageShowcase from "./imageViewer"
 
 interface PostProps {
     id: string,
@@ -107,13 +108,9 @@ const MorePost = async ({
         </div>
       </div>
 
-      <div className="w-full h-72 relative z-50">
-        <Image
-          src={image || offimage}
-          alt={title}
-          className="object-cover rounded-md object-center"
-          fill
-        />
+      <div className="w-full h-72">
+          <ImageShowcase src={image ? image : offimage} alt={title}  />
+
       </div>
 
       {category && (
