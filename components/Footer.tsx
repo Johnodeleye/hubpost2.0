@@ -27,13 +27,13 @@ const Footer = () => {
     <a href="/" className="mr-4 text-white hover:text-gray-400">
       <Image src={logo}   className="w-auto h-8 mr-2"   alt='hubpost'   />
     </a>
-    <a href="#" className="mr-4 text-white hover:text-green-400">
+    <a href="https://x.com/pthefuture_" className="mr-4 text-white hover:text-green-400">
       <FaTwitter className="w-6 h-8" />
     </a>
-    <a href="#" className="mr-4 text-white hover:text-green-400">
+    <a href="https://www.facebook.com/profile.php?id=61566500583512" className="mr-4 text-white hover:text-green-400">
       <FaFacebook className="w-6 h-8" />
     </a>
-    <a href="#" className="mr-4 text-white hover:text-green-400">
+    <a href="https://www.linkedin.com/in/thefuturedev/" className="mr-4 text-white hover:text-green-400">
       <FaLinkedin className="w-6 h-8" />
     </a>
     <a href="instagram.com/@perspicacious.dev" className="mr-4 text-white hover:text-green-400">

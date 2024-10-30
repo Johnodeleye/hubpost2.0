@@ -1,6 +1,8 @@
 // // SearchPage.tsx
 // "use client";
 
+import Searchbar from "@/components/SearchBar"
+
 // import * as React from "react";
 // import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 // import Searchbar from "@/components/SearchBar";
@@ -112,12 +114,14 @@
 // export default SearchPage;
 
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-      search
+    <div className="flex h-screen justify-center items-center p-4">
+      <p className="text-center text-lg md:text-xl lg:text-2xl text-gray-600">
+        This Page is not working. Please check back later.
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
