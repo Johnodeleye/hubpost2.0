@@ -4,6 +4,7 @@ import Alert from './alert';
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { files } from "@/app/assets/files";
+import { useRouter } from "next/navigation";
 
 interface DeleteCommentButtonProps {
   commentId: string;
@@ -13,7 +14,7 @@ interface DeleteCommentButtonProps {
 export default function DeleteCommentButton({ commentId, postId }: DeleteCommentButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const router = useRouter();
   const handleDelete = async () => {
     setIsLoading(true);
     try {
@@ -29,6 +30,7 @@ export default function DeleteCommentButton({ commentId, postId }: DeleteComment
 
       if (res.ok) {
         toast.success("Comment Deleted");
+        router.refresh()
         // Refresh comments list or update UI
       }
     } catch (error) {

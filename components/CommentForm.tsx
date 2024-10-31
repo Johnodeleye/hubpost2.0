@@ -54,7 +54,7 @@ const CommentForm: React.FC<CommentFormProps> =  ({ postId }) => {
         value={commentContent}
         onChange={(e) => setCommentContent(e.target.value)}
         placeholder="Write a comment..."
-        className="w-full p-2 pl-10 text-sm text-green-500 border-gray-300 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-gray-600 lg:w-3/4 md:w-3/4 sm:w-full"
+        className="w-full p-2 pl-10 bg-dark-3 text-sm text-green-500 border-green-600 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-green-600 lg:w-3/4 md:w-3/4 sm:w-full"
         required
       />
       <button
