@@ -6,10 +6,11 @@ import LeftSidebar from "@/components/Leftbar";
 import Topbar from "@/components/Topbar";
 import RightSidebar from "@/components/Rightsidebar";
 import { NextAuthProvider } from "@/components/Providers";
-import Whatsapp from "@/components/Whatsapp";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
+import Script from "next/script";
+import Whatsapp from "@/components/Whatsapp";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,22 +35,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <Head>
+      <Head>
         {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-NB90WQQG81"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-NB90WQQG81');
-            `,
-          }}
-        />
+<Script async src="https://www.googletagmanager.com/gtag/js?id=G-NB90WQQG81"></Script>
+<Script id="google-analytics">
+{
+   `  window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NB90WQQG81');
+`}
+</Script>
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
