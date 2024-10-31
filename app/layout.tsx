@@ -6,7 +6,6 @@ import LeftSidebar from "@/components/Leftbar";
 import Topbar from "@/components/Topbar";
 import RightSidebar from "@/components/Rightsidebar";
 import { NextAuthProvider } from "@/components/Providers";
-import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
 import Script from "next/script";
@@ -35,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         {/* Google tag (gtag.js) */}
 <Script async src="https://www.googletagmanager.com/gtag/js?id=G-NB90WQQG81"></Script>
 <Script id="google-analytics">
@@ -47,7 +46,7 @@ export default function RootLayout({
       gtag('config', 'G-NB90WQQG81');
 `}
 </Script>
-      </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
