@@ -6,7 +6,7 @@ import LeftSidebar from "@/components/Leftbar";
 import Topbar from "@/components/Topbar";
 import RightSidebar from "@/components/Rightsidebar";
 import { NextAuthProvider } from "@/components/Providers";
-import WhatsappLive from "@/components/WhatsappLive";
+import Whatsapp from "@/components/Whatsapp";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
@@ -63,7 +63,7 @@ export default function RootLayout({
 
           <section className="main-container">
             <div className="w-full max-w-4xl">
-              {children} <WhatsappLive/>
+              {children} <Whatsapp/>
             </div>
             <Footer/>
           </section>

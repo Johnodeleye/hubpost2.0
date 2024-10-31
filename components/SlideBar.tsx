@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 const navigation = [
   { name: 'Learn More', href: '/learnmore' },
   { name: 'FAQ', href: '/learnmore#faq' },
-  { name: 'Support', href: '/faq' },
+  { name: 'Support', href: 'https://buymeacoffee.com/thefuturefounder' },
   { name: 'Blog', href: '/authors/info.futurehub1@gmail.com' },
   { name: 'Download App (For Mobile)', href: '/learnmore#download' },
   { name: 'Join Community', href: 'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B' },

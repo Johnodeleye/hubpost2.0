@@ -207,11 +207,14 @@ h3{
     bottom: -80px;
     right: 40px;
     z-index: 50;
-    transition: bottom 0.3s ease;
+    opacity: 0;
+    transition: bottom ease-in-out 0.3s;
   }
 
   .whatsapp-link.visible{
     bottom: 40px;
+    opacity: 1;
+    
   }
 
   .whatsapp-icon{

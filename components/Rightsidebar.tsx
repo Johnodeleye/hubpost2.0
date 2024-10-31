@@ -16,7 +16,7 @@ function RightSidebar() {
         },
         {
             title: 'Support',
-            link: 'http://www.'
+            link: 'https://buymeacoffee.com/thefuturefounder'
         },
     ]
     return (

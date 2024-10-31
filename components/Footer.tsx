@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa"
 import logo from '@/app/assets/Logo White.png';
+import Link from "next/link";
 
 const Footer = () => {
     return (
@@ -8,12 +9,12 @@ const Footer = () => {
   <p className=" md:mt-0 copy text-center">&copy; 2024 HubPost. All rights reserved.</p>
   <ul className="flex justify-center mb-4">
     <li className="mr-4">
-      <a href="#" className="text-green-400 hover:text-gray-400">
-        Terms and Conditions
-      </a>
+    <Link href={`${process.env.NEXTAUTH_URL}/guidelines`} className="text-green-400 hover:text-gray-400">
+        Community Guidelines
+      </Link>
     </li>
     <li className="mr-4">
-      <a href="#" className="text-green-400 hover:text-gray-400">
+      <a href={`${process.env.NEXTAUTH_URL}/privacy`} className="text-green-400 hover:text-gray-400">
         Privacy Policy
       </a>
     </li>
@@ -36,7 +37,7 @@ const Footer = () => {
     <a href="https://www.linkedin.com/in/thefuturedev/" className="mr-4 text-white hover:text-green-400">
       <FaLinkedin className="w-6 h-8" />
     </a>
-    <a href="instagram.com/@perspicacious.dev" className="mr-4 text-white hover:text-green-400">
+    <a href="https://instagram.com/@perspicacious.dev" className="mr-4 text-white hover:text-green-400">
       <FaInstagram className="w-6 h-8" />
     </a>
     <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="text-white hover:text-green-400">
