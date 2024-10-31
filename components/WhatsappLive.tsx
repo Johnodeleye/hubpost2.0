@@ -71,6 +71,7 @@ const WhatsappLive = ({ showPopup, setShowPopup }: Props) => {
 
       {/* Popup content */}
       {showWhatsappPopup && (
+      
   <div className="isolate bg-dark-3 px-6 py-16 sm:py-20 lg:px-8">
   <div
     aria-hidden="true"

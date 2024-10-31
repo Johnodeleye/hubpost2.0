@@ -13,8 +13,10 @@ export default function LearnMore() {
         <p className="text-lg text-center mt-4 font-bold italic">Spark🔥, Connect👨‍💻, Ignite🧨!</p>
         <Image src={files.logo} alt="HubPost Logo" className="w-32 mx-auto mt-8" />
         <div className="flex justify-center mt-8">
-          <a href="#" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-1 rounded">
-            Join the Community
+          <a href="https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-1 rounded">
+            <div className="flex flex-row gap-1">
+            Channel <FaWhatsapp className='mt-1'/>
+            </div>
           </a>
           <a href="https://drive.google.com/uc?export=download&id=1Dnbi51jKaPRVWYQLkVup0GH50Y0PK_I6" 
              download="HubPost.apk" 

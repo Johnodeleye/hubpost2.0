@@ -14,7 +14,7 @@ export default function CommunityGuidelines() {
       
       {/* Introduction Section */}
       <h2 className="text-2xl font-bold text-green-400 mt-8 mb-2">Introduction</h2>
-      <p className="text-lg text-gray-300 mb-4">Welcome to HubPost! Our community is built on respect, inclusivity, and open communication.</p>
+      <p className="text-lg text-gray-300 mb-4">Welcome to HubPost! Our community is built on respect, inclusively, and open communication.</p>
       
       {/* Guiding Principles Section */}
       <h2 className="text-2xl font-bold text-green-400 mt-8 mb-2">Guiding Principles</h2>
