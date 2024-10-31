@@ -53,7 +53,7 @@ const Whatsapp = () => {
         text: "Thank you for your message, we'll get back to you",
         icon: "success"
       });
-      sendEmail();
+    //   sendEmail();
     }
   }
 
