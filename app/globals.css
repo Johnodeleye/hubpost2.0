@@ -55,7 +55,7 @@ body {
 
 input,
 textarea {
-  @apply px-4 py-2 border-green-400 rounded-md bg-transparent bg-dark-3 border;
+  @apply px-4 py-2 border-green-400 rounded-md bg-dark-3 border;
 }
 
 textarea{
