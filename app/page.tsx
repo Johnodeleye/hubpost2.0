@@ -5,7 +5,7 @@ import { TPost } from "./types";
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {
-  title: 'HubPost | Home',
+  title: 'HubPost Community | Posts',
 };
 
 // Fetch posts API endpoint
