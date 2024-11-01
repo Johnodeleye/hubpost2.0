@@ -78,7 +78,7 @@ const Page = async ({
                     
                     <div className="flex-1 flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="text-heading3-bold text-light-1">{author}</span>
+              <span className="text-heading3-bold text-light-1 truncate-name">{author}</span>
               <Verified authorId={authorid} className="" />
             </div>
             <p className="text-base-medium text-gray-1 truncate-email">@{authorEmail}</p>
