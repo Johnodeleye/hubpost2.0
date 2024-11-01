@@ -93,6 +93,7 @@ const EditProfileForm = ({ author }: { author: any }) => {
           type="text" 
           value={name}
           placeholder="Name"
+          className="bg-dark-3 text-white text-heading2-semibold"
         />
         <textarea 
           onChange={(e) => setBio(e.target.value)}
