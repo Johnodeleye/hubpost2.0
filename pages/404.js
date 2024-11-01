@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import '../globals.css';
 function Custom404() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">

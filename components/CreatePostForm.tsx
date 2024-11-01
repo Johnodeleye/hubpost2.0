@@ -119,6 +119,7 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
             <input 
             onChange={(e) => setTitle(e.target.value)} 
             type="text" 
+            className="bg-dark-3 text-heading2-bold text-white"
             placeholder="Title"/>
 
             <code>
@@ -177,7 +178,7 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
               ))}
 
             <div className="flex gap-2">
-                <input className="flex-1 w-full" 
+                <input className="flex-1 w-full bg-dark-3 text-white" 
                 type="text" 
                 placeholder="Input the link and click on Add"
                 onChange={e => setLinkInput(e.target.value)}

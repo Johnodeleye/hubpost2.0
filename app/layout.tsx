@@ -23,7 +23,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "HubPost",
+  title: "HubPost | Spark, Connect, Ignite",
   description: "Spark, Connect, Ignite",
 };
 
