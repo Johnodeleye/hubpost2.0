@@ -8,7 +8,7 @@ function Custom404() {
       <p className="text-gray-300 text-lg">
         Sorry, the page you're looking for doesn't exist.
       </p>
-      <Link href="/">
+      <Link href="/" className='py-6'>
         <a className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Go back to homepage
         </a>
