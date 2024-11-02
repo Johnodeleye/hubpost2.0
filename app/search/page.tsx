@@ -14,7 +14,7 @@ interface Props {
   routeType: string;
 }
 
-const SearchPage: NextPage<Props> = ({ routeType }) => {
+export const SearchPage: NextPage<Props> = ({ routeType }) => {
   const [authors, setAuthors] = React.useState<TAuthor[]>([]);
   const [filteredAuthors, setFilteredAuthors] = React.useState<TAuthor[]>([]);
   const [posts, setPosts] = React.useState<TPost[]>([]);
