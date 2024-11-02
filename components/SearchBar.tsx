@@ -19,7 +19,7 @@ function Searchbar({ handleSearch, routeType }: Props) {
   };
 
   return (
-    <div className="searchbar flex flex-col">
+    <div className="searchbar flex flex-col py-2">
       <div className="flex items-center mb-4">
         <Image
           src={files.search}
@@ -32,10 +32,8 @@ function Searchbar({ handleSearch, routeType }: Props) {
           id="text"
           value={search}
           onChange={handleInputChange}
-          placeholder={`${
-            routeType !== "/search" ? "Search for Users" : "Search Posts"
-          }`}
-          className="no-focus searchbar_input flex-1 ml-2"
+          placeholder='Search'
+          className="no-focus searchbar_input flex-1 ml-2 mt-3"
         />
       </div>
     </div>
