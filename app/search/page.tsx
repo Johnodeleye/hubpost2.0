@@ -7,12 +7,14 @@ import Searchbar from "@/components/SearchBar";
 import AuthorCard from "@/components/AuthorCard";
 import PostCard from "@/components/PostCard";
 import { TAuthor, TPost } from "@/app/types";
+import { NextPage } from 'next';
+
 
 interface Props {
   routeType: string;
 }
 
-function SearchPage({ routeType }: Props) {
+const SearchPage: NextPage<Props> = ({ routeType }) => {
   const [authors, setAuthors] = React.useState<TAuthor[]>([]);
   const [filteredAuthors, setFilteredAuthors] = React.useState<TAuthor[]>([]);
   const [posts, setPosts] = React.useState<TPost[]>([]);
@@ -61,7 +63,7 @@ function SearchPage({ routeType }: Props) {
       post.content.toLowerCase().includes(query.toLowerCase()) ||
       post.catName?.toLowerCase().includes(query.toLowerCase()) ||
       post.author.name.toLowerCase().includes(query.toLowerCase()) ||
-      post?.author?.email.toLowerCase().includes(query.toLowerCase())
+      post.author?.email?.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredPosts(filteredPosts);
   };
