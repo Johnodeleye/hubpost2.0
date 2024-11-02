@@ -27,6 +27,7 @@ function PostCard({ post }: Props) {
             {post.title}
         </h4>
         <p className='text-small-medium text-gray-1'>@{post.catName}</p>
+        <p className='text-small-medium text-gray-1'>Post by {''} @{post.author.name}</p>
     </div>
     </div>
     

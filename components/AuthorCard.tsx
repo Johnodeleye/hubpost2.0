@@ -1,12 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { TAuthor } from "@/app/types";
 import Verified from "./Verified";
-import router from "next/router";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface Props {
   author: TAuthor;
@@ -32,10 +31,11 @@ function AuthorCard({ author }: Props) {
                 <p className='text-small-medium text-gray-1'>@{author.email}</p>
             </div>
             </div>
-            
-            <Button className='user-card_btn' onClick={() => router.push(`/authors/${author.email}`)}>
+            <Link href={`/authors/${author.email}`} className="user-card_btn text-center">
+            <Button className='user-card_btn'>
                 View Profile
             </Button>
+    </Link>
         </article> 
     )
 }
