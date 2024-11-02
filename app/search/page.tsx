@@ -1,118 +1,114 @@
 // // // SearchPage.tsx
-// "use client";
-
-// import * as React from "react";
-// import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-// import Searchbar from "@/components/SearchBar";
-// import AuthorCard from "@/components/AuthorCard";
-// import PostCard from "@/components/PostCard";
-// import { TAuthor, TPost } from "@/app/types";
-// import { NextPage } from 'next';
+"use client";
+import * as React from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import Searchbar from "@/components/SearchBar";
+import AuthorCard from "@/components/AuthorCard";
+import PostCard from "@/components/PostCard";
+import { TAuthor, TPost } from "@/app/types";
 
 
-// interface Props {
-//   routeType: string;
-// }
+interface PageProps {
+  searchParams?: { routeType: string }
+}
 
-// export const SearchPage: NextPage<Props> = ({ routeType }) => {
-//   const [authors, setAuthors] = React.useState<TAuthor[]>([]);
-//   const [filteredAuthors, setFilteredAuthors] = React.useState<TAuthor[]>([]);
-//   const [posts, setPosts] = React.useState<TPost[]>([]);
-//   const [filteredPosts, setFilteredPosts] = React.useState<TPost[]>([]);
-//   const [searchQuery, setSearchQuery] = React.useState("");
-//   const [loading, setLoading] = React.useState(false);
+export default function SearchPage({ searchParams }: PageProps) {
+  const [authors, setAuthors] = React.useState<TAuthor[]>([]);
+  const [filteredAuthors, setFilteredAuthors] = React.useState<TAuthor[]>([]);
+  const [posts, setPosts] = React.useState<TPost[]>([]);
+  const [filteredPosts, setFilteredPosts] = React.useState<TPost[]>([]);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
-//   const fetchAuthors = async () => {
-//     setLoading(true);
-//     try {
-//       const response = await fetch("/api/authors");
-//       const data: TAuthor[] = await response.json();
-//       setAuthors(data);
-//       setFilteredAuthors(data);
-//     } catch (error) {
-//       console.error(error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+  const fetchAuthors = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/authors");
+      const data: TAuthor[] = await response.json();
+      setAuthors(data);
+      setFilteredAuthors(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   const fetchPosts = async () => {
-//     setLoading(true);
-//     try {
-//       const response = await fetch("/api/posts");
-//       const data: TPost[] = await response.json();
-//       setPosts(data);
-//       setFilteredPosts(data);
-//     } catch (error) {
-//       console.error(error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+  const fetchPosts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/posts");
+      const data: TPost[] = await response.json();
+      setPosts(data);
+      setFilteredPosts(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   const handleSearch = (query: string) => {
-//     setSearchQuery(query);
-//     const filteredAuthors = authors.filter((author) =>
-//       author.name.toLowerCase().includes(query.toLowerCase()) ||
-//       author.email.toLowerCase().includes(query.toLowerCase())
-//     );
-//     setFilteredAuthors(filteredAuthors);
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    const filteredAuthors = authors.filter((author) =>
+      author.name.toLowerCase().includes(query.toLowerCase()) ||
+      author.email.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredAuthors(filteredAuthors);
 
-//     const filteredPosts = posts.filter((post) =>
-//       post.title.toLowerCase().includes(query.toLowerCase()) ||
-//       post.content.toLowerCase().includes(query.toLowerCase()) ||
-//       post.catName?.toLowerCase().includes(query.toLowerCase()) ||
-//       post.author.name.toLowerCase().includes(query.toLowerCase()) ||
-//       post.author?.email?.toLowerCase().includes(query.toLowerCase())
-//     );
-//     setFilteredPosts(filteredPosts);
-//   };
+    const filteredPosts = posts.filter((post) =>
+      post.title.toLowerCase().includes(query.toLowerCase()) ||
+      post.content.toLowerCase().includes(query.toLowerCase()) ||
+      post.catName?.toLowerCase().includes(query.toLowerCase()) ||
+      post.author.name.toLowerCase().includes(query.toLowerCase()) ||
+      post.author?.email?.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredPosts(filteredPosts);
+  };
 
-//   React.useEffect(() => {
-//     fetchAuthors();
-//     fetchPosts();
-//   }, []);
+  React.useEffect(() => {
+    fetchAuthors();
+    fetchPosts();
+  }, []);
 
-//   return (
-//     <div className="mt-1 flex flex-col gap-3">
-//       <Searchbar handleSearch={handleSearch} routeType={routeType} />
-//       <Tabs className="text-white ml-7">
-//         <TabsList>
-//           <TabsTrigger value="users">Users</TabsTrigger>
-//           <TabsTrigger value="posts">Posts</TabsTrigger>
-//         </TabsList>
-//         <TabsContent value="users">
-//           {loading ? (
-//             <p>Loading...</p>
-//           ) : (
-//             filteredAuthors.length > 0 ? (
-//               filteredAuthors.map((author) => (
-//                 <AuthorCard key={author.id} author={author} />
-//               ))
-//             ) : (
-//               <p>No users found</p>
-//             )
-//           )}
-//         </TabsContent>
-//         <TabsContent value="posts">
-//           {loading ? (
-//             <p>Loading...</p>
-//           ) : (
-//             filteredPosts.length > 0 ? (
-//               filteredPosts.map((post) => (
-//                 <PostCard key={post.id} post={post} />
-//               ))
-//             ) : (
-//               <p>No posts found</p>
-//             )
-//           )}
-//         </TabsContent>
-//       </Tabs>
-//     </div>
-//   );
-// }
-
-// export default SearchPage;
+  return (
+    <div className="mt-1 flex flex-col gap-3">
+      <Searchbar handleSearch={handleSearch} routeType={searchParams?.routeType ?? 'defaultRoute'} />
+      <Tabs className="text-white ml-7">
+        <TabsList>
+          <TabsTrigger value="users">Users</TabsTrigger>
+          <TabsTrigger value="posts">Posts</TabsTrigger>
+        </TabsList>
+        <TabsContent value="users">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            filteredAuthors.length > 0 ? (
+              filteredAuthors.map((author) => (
+                <AuthorCard key={author.id} author={author} />
+              ))
+            ) : (
+              <p>No users found</p>
+            )
+          )}
+        </TabsContent>
+        <TabsContent value="posts">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            filteredPosts.length > 0 ? (
+              filteredPosts.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))
+            ) : (
+              <p>No posts found</p>
+            )
+          )}
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
 
 
 // const Page = () => {
@@ -127,10 +123,10 @@
 
 // export default Page;
 
-interface PageProps {
-  searchParams?: { q: string }
-}
+// interface PageProps {
+//   searchParams?: { q: string }
+// }
 
-export default function Page({ searchParams }: PageProps) {
-  return <div>Search</div>
-}
+// export default function Page({ searchParams }: PageProps) {
+//   return <div>Search</div>
+// }
