@@ -114,21 +114,20 @@ const addLink = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
 
     return (
         <div className="overflow-hidden">
-           <h2 className="text-green-400 text-center">Share Your Voice🔥📢</h2>
+           <h2 className="text-green-400 text-center">Create New🔥📢</h2>
            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-            <input 
-            onChange={(e) => setTitle(e.target.value)} 
-            type="text" 
-            className="bg-dark-3 text-heading2-bold text-white"
-            placeholder="Title"/>
+           <input 
+  onChange={(e) => setTitle(e.target.value)} 
+  type="text" 
+  className="bg-dark-3 text-white text-heading2-bold w-full"
+  placeholder="Title"
+/>
 
-            <code>
               <textarea 
               onChange={(e) => setContent(e.target.value)}
               placeholder="Content" cols={27} 
               className="w-full">
               </textarea>
-              </code>
 
               {links && links.map((link, i) => (
   <div key={i} className="flex items-center gap-2">
