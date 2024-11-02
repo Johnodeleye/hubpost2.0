@@ -21,9 +21,9 @@ const nextConfig = {
     ],
   },
   env: {
-    NEXTAUTH_URL: 'http://localhost:3000',
+    NEXTAUTH_URL: 'https://hubpost-app.vercel.app',
     
-    // https://hubpost-app.vercel.app
+    //http://localhost:3000
     CLOUDINARY_UPLOAD_PRESET: 'bgtdnw0r',
   },
 };
