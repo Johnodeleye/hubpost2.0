@@ -8,11 +8,9 @@ import Verified from "./Verified";
 import { getServerSession } from "next-auth";
 import authOptions from '@/lib/auth';
 import ImageShowcase from "./imageViewer"
-
 import LikeButton from "./LikeButton"
 import CommentCount from "./CommentCount"
 import Popup from "./Popup"
-import Share from "./Share"
 
 interface PostProps {
     id: string,
