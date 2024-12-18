@@ -4,9 +4,6 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import authOptions from '@/lib/auth';
 
-
-// pages/api/posts/[id]/route.js
-
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }

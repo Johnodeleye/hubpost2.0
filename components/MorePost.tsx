@@ -180,4 +180,4 @@ Posted {''} {formattedDate} by {''}
 )
 }
 
-export default MorePost
+export default MorePost;

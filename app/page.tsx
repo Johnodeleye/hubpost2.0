@@ -36,7 +36,7 @@ export default async function Home() {
   // Early return if no posts
   if (!posts || posts.length === 0) {
     return (
-      <div className="py-6">
+      <div className="py-6 text-white">
         <h2>No Posts</h2>
       </div>
     );

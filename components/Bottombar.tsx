@@ -11,8 +11,9 @@ function Bottombar() {
     
     return (
         <section className="bottombar">
-            <div className="bottombar_container">
+            <div className="bottombar_container" key={''}>
             {sidebarLinks.map((link) => {
+                <div key={link.label}></div>
             const isActive = pathname ? (pathname.includes(link.route) && link.route.length > 1) || pathname === link.route : false;
                         
                             //   if(link.route === '/profile') link.route = `${link.route}/${userId}`

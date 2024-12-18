@@ -59,7 +59,6 @@ const page = async ({ params }: { params: { id: string } }) => {
     );
   }
 
-
   return (
     <div>
       <MorePost
