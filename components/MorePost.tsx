@@ -119,8 +119,8 @@ const MorePost = async ({
         </Link>
       )}
 
-      <h2 className="text-heading2-semibold mt-2">{title}</h2>
-      <div className="content text-base-medium mt-2 whitespace-pre-line">
+      <h2 className="text-heading2-semibold mt-2 text-white">{title}</h2>
+      <div className="content text-base-medium mt-2 whitespace-pre-line text-white">
   {content}
 </div>
 
